@@ -16,7 +16,7 @@ import frc.robot.subsystems.ArcadeDrive;
 public class Robot extends TimedRobot {
 
   private Command m_driveCommand = new DriveCommand();
-
+//AAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHH.
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
   public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
