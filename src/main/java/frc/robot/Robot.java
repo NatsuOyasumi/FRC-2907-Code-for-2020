@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
     m_autonomous.getAutonomous();
-    gyro = new AHRS(SPI.Port.kMXP);
+    gyro = new AHRS();
   }
 
   @Override
