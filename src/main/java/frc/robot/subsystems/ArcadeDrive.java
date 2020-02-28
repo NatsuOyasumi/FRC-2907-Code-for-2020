@@ -32,6 +32,8 @@ public class ArcadeDrive extends SubsystemBase {
 
   public ArcadeDrive() {
 
+    initDefaultCommand();//defaults first and stuff
+
     //Motor Names
     leftMaster = new WPI_TalonSRX(Constants.MOTORLEFT0);
     leftSlave1 = new WPI_TalonSRX(Constants.MOTORLEFT1);
@@ -49,7 +51,7 @@ public class ArcadeDrive extends SubsystemBase {
     drive = new DifferentialDrive(leftMaster, rightMaster);
   }
 
-  public void initDefaultCommand(){
+  public void initDefaultCommand() {
     setDefaultCommand(new DriveCommand());
   }
 

@@ -55,6 +55,7 @@ public class DriveCommand extends CommandBase {
   
 
   public DriveCommand() {
+    //initDefaultCommand();
     addRequirements(Robot.m_arcadeDrive);
   }
 
