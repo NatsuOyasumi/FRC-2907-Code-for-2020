@@ -27,17 +27,27 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
 
+public void printRobotVariables() {
+  System.out.println("m_driveCommand runs when disabled: " + m_driveCommand.runsWhenDisabled());
+  System.out.println("m_driveCommand.toString(): " + m_driveCommand.toString());
+  System.out.println("gyro: " + gyro.toString());
+}
+
   @Override
   public void robotInit() {
+    System.out.println("Initializing Robot. . .");
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
     m_autonomous.getAutonomous();
     gyro = new AHRS();//don't need SPI.Port stuff
+    System.out.println("Robot initialized.");
   }
 
   @Override
   public void robotPeriodic() {
+    //System.out.println("Calling robot periodic after print variables");
+    //printRobotVariables();
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
     SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
@@ -47,29 +57,35 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    //System.out.println("Reached disabled init");
+    printRobotVariables();
   }
 
   @Override
   public void disabledPeriodic() {
+    //System.out.println("Reached disabled periodic");
   }
 
   @Override
   public void autonomousInit() {
+    //System.out.println("Initializing autonomous");
     m_autonomous.choosePicked();
   }
 
   @Override
   public void autonomousPeriodic() {
+    //System.out.println("Reached autonomous periodic");
   }
 
   @Override
   public void teleopInit() {
+    System.out.println("initializing teleop schedule");
     m_driveCommand.schedule();
   }
 
   @Override
   public void teleopPeriodic() {
-
+    //System.out.println("Reached teleop periodic");
   }
 
   @Override

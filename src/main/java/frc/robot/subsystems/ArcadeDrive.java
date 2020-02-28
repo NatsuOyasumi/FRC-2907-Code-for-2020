@@ -27,14 +27,15 @@ public class ArcadeDrive extends SubsystemBase {
   public DifferentialDrive drive;
 
   public void manualDrive(double move, double turn) {
+    System.out.println("Driving move " + move + " and turn " + turn);
     drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
   }
 
   public ArcadeDrive() {
 
-    initDefaultCommand();//defaults first and stuff
+    //initDefaultCommand();//defaults first and stuff
 
-    //Motor Names
+    //Motor Names*
     leftMaster = new WPI_TalonSRX(Constants.MOTORLEFT0);
     leftSlave1 = new WPI_TalonSRX(Constants.MOTORLEFT1);
     leftSlave2 = new WPI_TalonSRX(Constants.MOTORLEFT2);
@@ -52,6 +53,7 @@ public class ArcadeDrive extends SubsystemBase {
   }
 
   public void initDefaultCommand() {
+    System.out.println("initializing default command");
     setDefaultCommand(new DriveCommand());
   }
 

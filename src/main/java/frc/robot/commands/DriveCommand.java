@@ -13,8 +13,10 @@ import frc.robot.Robot;
 
 public class DriveCommand extends CommandBase {
 
-  final double move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
-  final double turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
+  //final double move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
+  //final double turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
+  double move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
+  double turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
 
   double curSpeedT = 0;//turn
   double speedInc = .2;//time to ramp
@@ -67,18 +69,28 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    //System.out.println("Reached execute method in DriveCommand.");
     //if X (theoretically) is held it should take away driver control and point the robot at the goal
+    System.out.println("move: " + move + "  speedMulti: " + speedMulti);
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
+      System.out.println("Got raw button 2");
       //goal targeting
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
-      Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());
+      Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());//move, turn
     } else {
+      //System.out.println("No Raw button 2");
+      move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
+      turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
       //normal movement
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
+      //for fun: 
+      ////curSpeedM = 0.5;
+      //magicMotion returns curSpeedT if a driver is driving
+      ////curSpeedT = 0.15;
       Robot.m_arcadeDrive.manualDrive(curSpeedM, magicMotion());//MM used to be curSpeedT
       //curSpeedT = moveCalculation(turn, speedMulti, curSpeedT);
       curSpeedT = turn;
+      //System.out.println("curSpeedM: " + curSpeedM + "   curSpeedT: " + curSpeedT);
     }
   }
 
@@ -96,9 +108,11 @@ public class DriveCommand extends CommandBase {
   private double moveCalculation(final double controller, final double multiplication, final double currentValue) {
 
     double finalSpeed = currentValue;
+    //***System.out.println("current Value: " + currentValue);
 
     //final speed iteration
     finalSpeed += controller * multiplication;
+    //***System.out.println("finalSpeed is " + finalSpeed);
 
     //final speed limiting for ramp
     if (finalSpeed > controller && controller > 0) { 
@@ -109,7 +123,7 @@ public class DriveCommand extends CommandBase {
 
     //controller dead zone
     if (controller < stickDeadZoneThresh && controller > -stickDeadZoneThresh) { finalSpeed = 0; }
-
+    //***System.out.println("Returning finalSpeed which is " + finalSpeed);
     return finalSpeed;
   }
 
