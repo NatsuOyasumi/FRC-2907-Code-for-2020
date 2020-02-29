@@ -53,7 +53,6 @@ public class ArcadeDrive extends SubsystemBase {
   }
 
   public void initDefaultCommand() {
-    System.out.println("initializing default command");
     setDefaultCommand(new DriveCommand());
   }
 

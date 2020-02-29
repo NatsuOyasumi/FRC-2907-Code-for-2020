@@ -35,13 +35,11 @@ public void printRobotVariables() {
 
   @Override
   public void robotInit() {
-    System.out.println("Initializing Robot. . .");
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
     m_autonomous.getAutonomous();
     gyro = new AHRS();//don't need SPI.Port stuff
-    System.out.println("Robot initialized.");
   }
 
   @Override
@@ -73,7 +71,6 @@ public void printRobotVariables() {
 
   @Override
   public void teleopInit() {
-    System.out.println("initializing teleop schedule");
     m_driveCommand.schedule();
   }
 

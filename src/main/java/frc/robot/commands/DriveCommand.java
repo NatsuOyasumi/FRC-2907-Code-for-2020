@@ -70,9 +70,9 @@ public class DriveCommand extends CommandBase {
   @Override
   public void execute() {
     //if X (theoretically) is held it should take away driver control and point the robot at the goal
-    System.out.println("move: " + move + "  speedMulti: " + speedMulti);
+    //*//*System.out.println("move: " + move + "  speedMulti: " + speedMulti);
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
-      System.out.println("Got raw button 2");
+      System.out.print("Got raw button 2    ");
       //goal targeting
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
       Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());//move, turn
