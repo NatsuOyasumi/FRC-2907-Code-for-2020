@@ -63,6 +63,9 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //No matter what, driver controls speed.
+    //But if holding x, robot controls turn
+    move = Robot.m_robotContainer.driverGamepad.getRawAxis(1) * -1;//assuming -1 is backwards and +1 is forwards, it's inverted.
     
     //if X (theoretically) is held it should take away driver control and point the robot at the goal
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
@@ -70,6 +73,8 @@ public class DriveCommand extends CommandBase {
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
       Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());
     } else {
+      turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2); //* -1;//is also inverted
+
       //normal movement
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
       Robot.m_arcadeDrive.manualDrive(curSpeedM, magicMotion());//MM used to be curSpeedT
