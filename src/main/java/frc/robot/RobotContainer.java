@@ -15,7 +15,6 @@ public class RobotContainer {
   public Joystick driverGamepad = new Joystick(Constants.DRIVER_GAMEPAD);
 
   public RobotContainer() {
-    System.out.println("Going to configure button bindings");
     configureButtonBindings();
   }
 
