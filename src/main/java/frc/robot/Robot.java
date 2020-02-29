@@ -1,6 +1,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+//import edu.wpi.first.wpilibj.TalonSRX;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ArcadeDrive;
 import java.lang.Object;
@@ -28,9 +30,6 @@ public class Robot extends TimedRobot {
 
   private WPI_TalonSRX climbMaster;
 
-  shooterSlave1.follow(shooterMaster);
-  shooterSlave2.follow(shooterMaster);
-
   private Command m_driveCommand = new DriveCommand();
 //Hello Sarah just hacked Spencer. Twice.d
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
@@ -42,9 +41,12 @@ public class Robot extends TimedRobot {
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
-
+//lets git this hub yah yeet -C
   @Override
   public void robotInit() {
+    shooterSlave1.follow(shooterMaster);
+    shooterSlave2.follow(shooterMaster);
+
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
