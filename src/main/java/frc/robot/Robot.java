@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
 //lets git this hub yah yeet -C
+//heres another comment yah yeet
   @Override
   public void robotInit() {
     shooterSlave1.follow(shooterMaster);
