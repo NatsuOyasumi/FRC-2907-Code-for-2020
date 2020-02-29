@@ -69,7 +69,6 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("Reached execute method in DriveCommand.");
     //if X (theoretically) is held it should take away driver control and point the robot at the goal
     System.out.println("move: " + move + "  speedMulti: " + speedMulti);
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
@@ -78,7 +77,6 @@ public class DriveCommand extends CommandBase {
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
       Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());//move, turn
     } else {
-      //System.out.println("No Raw button 2");
       move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
       turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
       //normal movement
@@ -90,7 +88,6 @@ public class DriveCommand extends CommandBase {
       Robot.m_arcadeDrive.manualDrive(curSpeedM, magicMotion());//MM used to be curSpeedT
       //curSpeedT = moveCalculation(turn, speedMulti, curSpeedT);
       curSpeedT = turn;
-      //System.out.println("curSpeedM: " + curSpeedM + "   curSpeedT: " + curSpeedT);
     }
   }
 

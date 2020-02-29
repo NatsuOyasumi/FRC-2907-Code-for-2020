@@ -46,8 +46,6 @@ public void printRobotVariables() {
 
   @Override
   public void robotPeriodic() {
-    //System.out.println("Calling robot periodic after print variables");
-    //printRobotVariables();
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
     SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
@@ -57,24 +55,20 @@ public void printRobotVariables() {
 
   @Override
   public void disabledInit() {
-    //System.out.println("Reached disabled init");
     printRobotVariables();
   }
 
   @Override
   public void disabledPeriodic() {
-    //System.out.println("Reached disabled periodic");
   }
 
   @Override
   public void autonomousInit() {
-    //System.out.println("Initializing autonomous");
     m_autonomous.choosePicked();
   }
 
   @Override
   public void autonomousPeriodic() {
-    //System.out.println("Reached autonomous periodic");
   }
 
   @Override
@@ -85,7 +79,6 @@ public void printRobotVariables() {
 
   @Override
   public void teleopPeriodic() {
-    //System.out.println("Reached teleop periodic");
   }
 
   @Override
