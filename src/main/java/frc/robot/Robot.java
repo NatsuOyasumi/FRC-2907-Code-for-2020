@@ -31,7 +31,7 @@ public void printRobotVariables() {
   System.out.println("m_driveCommand runs when disabled: " + m_driveCommand.runsWhenDisabled());
   System.out.println("m_driveCommand.toString(): " + m_driveCommand.toString());
   System.out.println("gyro: " + gyro.toString());
-}
+}//end method
 
   @Override
   public void robotInit() {
