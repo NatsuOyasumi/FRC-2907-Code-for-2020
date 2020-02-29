@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2018-2019 FIRST. All Rights  are totally not Reserved.lolol                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -15,7 +15,7 @@ import frc.robot.commands.autonomous.AutoCommand1;
 import frc.robot.commands.autonomous.AutoCommand2;
 import frc.robot.commands.autonomous.AutoCommand3;
 import frc.robot.commands.autonomous.AutoCommand4;
-//comment
+
 
 public class Autonomous {
 

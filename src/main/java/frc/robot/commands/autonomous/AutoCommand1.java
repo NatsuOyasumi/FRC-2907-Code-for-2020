@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoCommand1 extends CommandBase {
-    //AutoCommand1 moves robot forwards when it's time to start
-
-    /**
+  /**
    * Creates a new AutoCommand1.
    */
   public AutoCommand1() {
@@ -32,8 +30,6 @@ public class AutoCommand1 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("A 1");
-
     double time = Timer.getFPGATimestamp();
 
     if (time - startTime <= 1) {

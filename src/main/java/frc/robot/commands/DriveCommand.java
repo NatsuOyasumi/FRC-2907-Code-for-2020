@@ -13,23 +13,22 @@ import frc.robot.Robot;
 
 public class DriveCommand extends CommandBase {
 
-  //final double move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
-  //final double turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
   double move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
   double turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
 
   double curSpeedT = 0;//turn
-  double speedInc = .2;//time to ramp
-  double speedMulti = (1/speedInc) / 50; //iteration step, 50 is cycles per second
+  final double speedInc = .2;//time to ramp
+  final double speedMulti = (1/speedInc) / 50; //iteration step, 50 is cycles per second
   double curSpeedM = 0;
   
+
   final double kp = 0.02560;
   final double ki = 0.08;
   final double kd = 0.006;
   final double iLimit = 12;//maximum error the targeting code is allowed to target
 
   // 'William'
-  double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
+  final double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
   double portDistance;//distance horizantal to middle of goal
 
   double setPoint = 0;
@@ -37,8 +36,9 @@ public class DriveCommand extends CommandBase {
   double lastTimeStamp;
   double lastError;
 
-  double stickDeadZoneThresh = .01;//the dead zone for the controller stick
-  double targingDeadZoneThresh = .15;//the dead zone threash hold to end the PID targeting loop
+  final double stickDeadZoneThresh = .01;//the dead zone for the controller stick
+  final double targingDeadZoneThresh = .15;//the dead zone threash hold to end the PID targeting loop
+  final double magicMotionDeadZoneThresh = 1;// the dead zone for when the magic motion code is allowed to take over and adjust unintentional turning
 
   // get relative x position
   double currentPos = Robot.tx.getDouble(0.0);
@@ -49,15 +49,9 @@ public class DriveCommand extends CommandBase {
   // calculations
   double error = setPoint - currentPos;
   double dt = Timer.getFPGATimestamp() - lastTimeStamp;
-
-  //Magic motion global variables
-  //float currentZero = 0.0 ;
-  //no longer needed, reseting yaw to 0 instead
-
   
 
   public DriveCommand() {
-    //initDefaultCommand();
     addRequirements(Robot.m_arcadeDrive);
   }
 
@@ -69,22 +63,15 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     //if X (theoretically) is held it should take away driver control and point the robot at the goal
-    //*//*System.out.println("move: " + move + "  speedMulti: " + speedMulti);
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
-      System.out.print("Got raw button 2    ");
       //goal targeting
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
-      Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());//move, turn
+      Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());
     } else {
-      move = Robot.m_robotContainer.driverGamepad.getRawAxis(1);
-      turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
       //normal movement
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
-      //for fun: 
-      ////curSpeedM = 0.5;
-      //magicMotion returns curSpeedT if a driver is driving
-      ////curSpeedT = 0.15;
       Robot.m_arcadeDrive.manualDrive(curSpeedM, magicMotion());//MM used to be curSpeedT
       //curSpeedT = moveCalculation(turn, speedMulti, curSpeedT);
       curSpeedT = turn;
@@ -105,11 +92,9 @@ public class DriveCommand extends CommandBase {
   private double moveCalculation(final double controller, final double multiplication, final double currentValue) {
 
     double finalSpeed = currentValue;
-    //***System.out.println("current Value: " + currentValue);
 
     //final speed iteration
     finalSpeed += controller * multiplication;
-    //***System.out.println("finalSpeed is " + finalSpeed);
 
     //final speed limiting for ramp
     if (finalSpeed > controller && controller > 0) { 
@@ -120,7 +105,7 @@ public class DriveCommand extends CommandBase {
 
     //controller dead zone
     if (controller < stickDeadZoneThresh && controller > -stickDeadZoneThresh) { finalSpeed = 0; }
-    //***System.out.println("Returning finalSpeed which is " + finalSpeed);
+
     return finalSpeed;
   }
 
@@ -131,8 +116,8 @@ public class DriveCommand extends CommandBase {
       errorSum += error * dt; 
     }
 
-    double errorRate = error - lastError; // dt;
-    double motorOutput = kp * error  + kd * errorRate + ki * errorSum;//turn power calculation
+    double errorRate = error - lastError; //dt;
+    double motorOutput = kp * error  + kd * errorRate + ki * errorSum; //turn power calculation
 
     //Targeting dead zone
     if (error < .15 && error > -.15) {
@@ -151,15 +136,20 @@ public class DriveCommand extends CommandBase {
         Robot.gyro.reset();
         motorOutput = curSpeedT;
     } else {
-      if(Math.abs(Robot.gyro.getYaw()) > 1) {
+      if(Math.abs(Robot.gyro.getYaw()) > magicMotionDeadZoneThresh) {
         //motorOutput is proportional to how far off the yaw
         //is. If it turns out that it is too strong or not
         //strong enough, change the 180.
         //Yaw should never be greater than the denominator though
         //because motorOutput is -1 to 1, so it would set to max.
-       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);
+        //hi - Charles
+       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);;;;
       }
     }
     return motorOutput;
   }//end magicMotion
+
+  private void hopperManager() {
+    //Robot.getHopperLeft()
+  }
 }

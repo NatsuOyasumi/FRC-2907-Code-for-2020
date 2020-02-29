@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoCommand3 extends CommandBase {
-  //Handles moving and shooting
 
   final double kp = 0.02560;
   final double ki = 0.08;
@@ -44,7 +43,6 @@ public class AutoCommand3 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("A 3");
     
     // get relative x position
     double currentPos = Robot.tx.getDouble(0.0);

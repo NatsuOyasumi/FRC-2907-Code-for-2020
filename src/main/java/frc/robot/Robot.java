@@ -12,11 +12,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ArcadeDrive;
+import java.lang.Object;
 
 public class Robot extends TimedRobot {
 
-  private Command m_driveCommand = new DriveCommand();
+  private WPI_TalonSRX hopperLeft;
+  private WPI_TalonSRX hopperRight;
 
+  private WPI_TalonSRX shooterMaster;
+  private WPI_TalonSRX shooterSlave1;
+  private WPI_TalonSRX shooterSlave2;
+  private WPI_TalonSRX shooterHood;
+
+  private WPI_TalonSRX intakeMaster;
+
+  private WPI_TalonSRX climbMaster;
+
+  shooterSlave1.follow(shooterMaster);
+  shooterSlave2.follow(shooterMaster);
+
+  private Command m_driveCommand = new DriveCommand();
+//Hello Sarah just hacked Spencer. Twice.d
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
   public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
@@ -27,19 +43,18 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
 
-public void printRobotVariables() {
-  System.out.println("m_driveCommand runs when disabled: " + m_driveCommand.runsWhenDisabled());
-  System.out.println("m_driveCommand.toString(): " + m_driveCommand.toString());
-  System.out.println("gyro: " + gyro.toString());
-}//end method
-
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
     m_autonomous.getAutonomous();
-    gyro = new AHRS();//don't need SPI.Port stuff
+    try {
+    gyro = new AHRS();
+    } catch(RuntimeException ex ) {
+      ex.printStackTrace();
+    }
+  
   }
 
   @Override
@@ -48,12 +63,10 @@ public void printRobotVariables() {
     SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
     SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
     m_autonomous.getAutonomous();
-
   }
 
   @Override
   public void disabledInit() {
-    printRobotVariables();
   }
 
   @Override
@@ -76,6 +89,7 @@ public void printRobotVariables() {
 
   @Override
   public void teleopPeriodic() {
+
   }
 
   @Override
@@ -87,4 +101,27 @@ public void printRobotVariables() {
   public void testPeriodic() {
   }
 
+  public WPI_TalonSRX getHopperLeft() {
+    return hopperLeft;
+  }
+
+  public WPI_TalonSRX getHopperRight() {
+    return hopperRight;
+  }
+
+  public WPI_TalonSRX getShooterMaster() {
+    return shooterMaster;
+  }
+
+  public WPI_TalonSRX getShooterHood() {
+    return shooterHood;
+  }
+
+  public WPI_TalonSRX getIntake() {
+    return intakeMaster;
+  }
+
+  public WPI_TalonSRX getClimb() {
+    return climbMaster;
+  }
 }

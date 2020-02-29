@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoCommand4 extends CommandBase {
-  //Just seems to turn
 
   public AutoCommand4() {
     addRequirements(Robot.m_arcadeDrive);
@@ -29,7 +28,6 @@ public class AutoCommand4 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("A 4");
     double curTime = Timer.getFPGATimestamp();
     double calTime = curTime - startTime;
     

@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoCommand2 extends CommandBase {
-  //Apparently this was originally called dance...
-
   /**
    * Creates a new AutoCommand1.
    */
@@ -32,8 +30,6 @@ public class AutoCommand2 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("A 2");
-
     double curTime = Timer.getFPGATimestamp();
     double calTime = curTime - startTime;
 

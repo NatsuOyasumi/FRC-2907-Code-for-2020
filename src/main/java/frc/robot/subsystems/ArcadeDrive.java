@@ -20,6 +20,7 @@ public class ArcadeDrive extends SubsystemBase {
   private WPI_TalonSRX leftMaster;
   private WPI_TalonSRX leftSlave1;
   private WPI_TalonSRX leftSlave2;
+
   private WPI_TalonSRX rightMaster;
   private WPI_TalonSRX rightSlave1;
   private WPI_TalonSRX rightSLave2;
@@ -27,18 +28,16 @@ public class ArcadeDrive extends SubsystemBase {
   public DifferentialDrive drive;
 
   public void manualDrive(double move, double turn) {
-    System.out.println("Driving move " + move + " and turn " + turn);
     drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
   }
 
   public ArcadeDrive() {
 
-    //initDefaultCommand();//defaults first and stuff
-
-    //Motor Names*
+    //Motor Names
     leftMaster = new WPI_TalonSRX(Constants.MOTORLEFT0);
     leftSlave1 = new WPI_TalonSRX(Constants.MOTORLEFT1);
     leftSlave2 = new WPI_TalonSRX(Constants.MOTORLEFT2);
+
     rightMaster = new WPI_TalonSRX(Constants.MOTORRIGHT0);
     rightSlave1 = new WPI_TalonSRX(Constants.MOTORRIGHT1);
     rightSLave2 = new WPI_TalonSRX(Constants.MOTORRIGHT2);
@@ -46,13 +45,16 @@ public class ArcadeDrive extends SubsystemBase {
     //Declaring Masters
     leftSlave1.follow(leftMaster);
     leftSlave2.follow(leftMaster);
+
     rightSlave1.follow(rightMaster);
     rightSLave2.follow(rightMaster);
+
+    
 
     drive = new DifferentialDrive(leftMaster, rightMaster);
   }
 
-  public void initDefaultCommand() {
+  public void initDefaultCommand(){
     setDefaultCommand(new DriveCommand());
   }
 

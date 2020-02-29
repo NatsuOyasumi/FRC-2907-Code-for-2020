@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoCommand0 extends CommandBase {
-  //AutoCommand0 moves robot backwards when it's time to start
-
   /**
    * Creates a new AutoCommand0.
    */
@@ -32,8 +30,6 @@ public class AutoCommand0 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("A 0");
-
     double time = Timer.getFPGATimestamp();
 
     if (time - startTime <= 1) {
