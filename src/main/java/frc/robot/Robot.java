@@ -45,8 +45,8 @@ public class Robot extends TimedRobot {
 //heres another comment yah yeet
   @Override
   public void robotInit() {
-    shooterSlave1.follow(shooterMaster);
-    shooterSlave2.follow(shooterMaster);
+    //shooterSlave1.follow(shooterMaster);
+    //shooterSlave2.follow(shooterMaster);
 
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
