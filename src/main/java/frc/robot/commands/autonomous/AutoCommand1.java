@@ -50,6 +50,7 @@ public class AutoCommand1 extends CommandBase {
   }
 
   public void moveEasy(double move, double turn) {
+    System.out.print("autonomous 1 ");
     Robot.m_arcadeDrive.manualDrive(-move, turn);
   }
 }

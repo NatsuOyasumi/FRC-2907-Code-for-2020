@@ -31,7 +31,6 @@ public class Robot extends TimedRobot {
   private WPI_TalonSRX climbMaster;
 
   private Command m_driveCommand = new DriveCommand();
-//Hello Sarah just hacked Spencer. Twice.d
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
   public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
@@ -41,8 +40,7 @@ public class Robot extends TimedRobot {
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
-//lets git this hub yah yeet -C
-//heres another comment yah yeet
+  
   @Override
   public void robotInit() {
     //shooterSlave1.follow(shooterMaster);
