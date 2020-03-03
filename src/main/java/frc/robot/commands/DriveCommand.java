@@ -54,17 +54,20 @@ public class DriveCommand extends CommandBase {
 
     if(curSpeedT != 0) {
         //if driver controlling, reset gryo/forwards
-        //currentZero = Robot.gyro.getYaw();
-        Robot.gyro.reset();
+        currentZero = Robot.gyro.getYaw();
+        //Robot.gyro.reset();
         motorOutput = curSpeedT;
     } else {
-      if(Math.abs(Robot.gyro.getYaw()) > magicMotionDeadZoneThresh) {
+      if(Math.abs(currentZero - Robot.gyro.getYaw()) > magicMotionDeadZoneThresh) {
+        //If the difference between the last set currentZero direction and the current direction
+        //of the Robot is greater than what's allowed, correct it.
+
         //motorOutput is proportional to how far off the yaw
         //is. If it turns out that it is too strong or not
         //strong enough, change the 180.
         //Yaw should never be greater than the denominator though
         //because motorOutput is -1 to 1, so it would set to max.
-       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);;;;
+       motorOutput = (-1) * (Math.abs(currentZero - Robot.gyro.getYaw()) / 180);
       }
     }
     return motorOutput;
