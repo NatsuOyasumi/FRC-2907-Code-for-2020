@@ -150,7 +150,7 @@ public class DriveCommand extends CommandBase {
         //Yaw should never be greater than the denominator though
         //because motorOutput is -1 to 1, so it would set to max.
         //hi - Charles
-       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);
+       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);;;;
       }
     }
     return motorOutput;
