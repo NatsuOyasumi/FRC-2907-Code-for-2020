@@ -19,11 +19,11 @@ public class ArcadeDrive extends SubsystemBase {
   //Creating Motors
   private WPI_TalonSRX leftMaster;
   private WPI_TalonSRX leftSlave1;
-  private WPI_TalonSRX leftSlave2;
+  //private WPI_TalonSRX leftSlave2;
 
   private WPI_TalonSRX rightMaster;
   private WPI_TalonSRX rightSlave1;
-  private WPI_TalonSRX rightSLave2;
+  //private WPI_TalonSRX rightSLave2;
 
   public DifferentialDrive drive;
 
@@ -37,20 +37,18 @@ public class ArcadeDrive extends SubsystemBase {
     //Motor Names
     leftMaster = new WPI_TalonSRX(Constants.MOTORLEFT0);
     leftSlave1 = new WPI_TalonSRX(Constants.MOTORLEFT1);
-    leftSlave2 = new WPI_TalonSRX(Constants.MOTORLEFT2);
+    //leftSlave2 = new WPI_TalonSRX(Constants.MOTORLEFT2);
 
     rightMaster = new WPI_TalonSRX(Constants.MOTORRIGHT0);
     rightSlave1 = new WPI_TalonSRX(Constants.MOTORRIGHT1);
-    rightSLave2 = new WPI_TalonSRX(Constants.MOTORRIGHT2);
+    //rightSLave2 = new WPI_TalonSRX(Constants.MOTORRIGHT2);
 
     //Declaring Masters
     leftSlave1.follow(leftMaster);
-    leftSlave2.follow(leftMaster);
+    //leftSlave2.follow(leftMaster);
 
     rightSlave1.follow(rightMaster);
-    rightSLave2.follow(rightMaster);
-
-    
+    //rightSLave2.follow(rightMaster);
 
     drive = new DifferentialDrive(leftMaster, rightMaster);
   }

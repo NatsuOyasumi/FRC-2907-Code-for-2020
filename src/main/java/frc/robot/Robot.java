@@ -18,20 +18,20 @@ import java.lang.Object;
 
 public class Robot extends TimedRobot {
 
-  private WPI_TalonSRX hopperLeft;
-  private WPI_TalonSRX hopperRight;
+  // private WPI_TalonSRX hopperLeft;
+  // private WPI_TalonSRX hopperRight;
 
-  private WPI_TalonSRX shooterMaster;
-  private WPI_TalonSRX shooterSlave1;
-  private WPI_TalonSRX shooterSlave2;
-  private WPI_TalonSRX shooterHood;
+  // private WPI_TalonSRX shooterMaster;
+  // private WPI_TalonSRX shooterSlave1;
+  // private WPI_TalonSRX shooterSlave2;
+  // private WPI_TalonSRX shooterHood;
 
-  private WPI_TalonSRX intakeMaster;
+  // private WPI_TalonSRX intakeMaster;
 
-  private WPI_TalonSRX climbMaster;
+  // private WPI_TalonSRX climbMaster;
 
   private Command m_driveCommand = new DriveCommand();
-//Hello Sarah just hacked Spencer. Twice.d
+
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
   public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
@@ -41,8 +41,8 @@ public class Robot extends TimedRobot {
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
-//lets git this hub yah yeet -C
-//heres another comment yah yeet
+
+
   @Override
   public void robotInit() {
     //shooterSlave1.follow(shooterMaster);
@@ -102,29 +102,5 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
-  }
-
-  public WPI_TalonSRX getHopperLeft() {
-    return hopperLeft;
-  }
-
-  public WPI_TalonSRX getHopperRight() {
-    return hopperRight;
-  }
-
-  public WPI_TalonSRX getShooterMaster() {
-    return shooterMaster;
-  }
-
-  public WPI_TalonSRX getShooterHood() {
-    return shooterHood;
-  }
-
-  public WPI_TalonSRX getIntake() {
-    return intakeMaster;
-  }
-
-  public WPI_TalonSRX getClimb() {
-    return climbMaster;
   }
 }

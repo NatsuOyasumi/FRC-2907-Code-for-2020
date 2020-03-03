@@ -13,7 +13,10 @@ import frc.robot.Robot;
 
 public class AutoCommand4 extends CommandBase {
 
-  public AutoCommand4() {
+  double speed;
+
+  public AutoCommand4(double s) {
+    speed = s;
     addRequirements(Robot.m_arcadeDrive);
   }
 
@@ -32,7 +35,7 @@ public class AutoCommand4 extends CommandBase {
     double calTime = curTime - startTime;
     
     if (calTime <= 3) {
-      moveEasy(0, 1);
+      moveEasy(0, speed);
     }
 
   }

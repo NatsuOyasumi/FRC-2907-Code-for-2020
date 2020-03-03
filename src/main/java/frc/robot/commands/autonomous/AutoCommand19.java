@@ -9,39 +9,38 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Autonomous;
 import frc.robot.Robot;
 
-public class AutoCommand1 extends CommandBase {
-  /**
-   * Creates a new AutoCommand1.
-   */
-  
+public class AutoCommand19 extends CommandBase {
+
   double speed;
 
-  public AutoCommand1(double s) {
-    speed = s;
+  public AutoCommand19(double s) {
+    speed = s-0.1;
     addRequirements(Robot.m_arcadeDrive);
   }
-
-  private double startTime;
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    startTime = Timer.getFPGATimestamp();
+    // startTime = Timer.getFPGATimestamp();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double time = Timer.getFPGATimestamp();
-
-    if (time - startTime <= 1) {
-      moveEasy(-speed, 0);
-    }
-
+    //0.2 is too low, does nothing
+    //0.3 is slow, but it turns the wheels
+    //0.25 is too low, makes noise but wheels don't turn
+    //0.27 is too low, makes noise but wheels don't turn
+    //0.28 is too low, makes noise but wheels don't turn
+    //0.29 is slow, makes noise but wheels turn
+    //On a full battery, 0.26 is basically the absolute
+      //lowest setting, but only one side turns
+    //0.9 is totally fine. . .
+    Robot.m_arcadeDrive.manualDrive(speed, 0);
   }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
@@ -53,7 +52,5 @@ public class AutoCommand1 extends CommandBase {
     return false;
   }
 
-  public void moveEasy(double move, double turn) {
-    Robot.m_arcadeDrive.manualDrive(-move, turn);
-  }
-}
+  
+}//end class

@@ -14,6 +14,8 @@ import frc.robot.Robot;
 
 public class AutoCommand3 extends CommandBase {
 
+  double speed;
+
   final double kp = 0.02560;
   final double ki = 0.08;
   final double kd = 0.006;
@@ -28,7 +30,8 @@ public class AutoCommand3 extends CommandBase {
   double lastTimeStamp;
   double lastError;
 
-  public AutoCommand3() {
+  public AutoCommand3(double s) {
+    speed = s;
     addRequirements(Robot.m_arcadeDrive);
   }
 
@@ -56,8 +59,8 @@ public class AutoCommand3 extends CommandBase {
 
     //Shooter calculations 'William'
     portDistance = portHeight/(Math.tan((currentPosY + 28)*Math.PI/180));
-    double shootSpeed = Math.sqrt((2 * 9.8 * portHeight) + Math.pow(9.8 * portDistance/Math.sqrt(2 * 9.8 * portHeight), 2));
-    double shootAngle = Math.toDegrees(Math.asin(Math.sqrt(2 * 9.8 * portHeight)/shootSpeed));
+    double shootSpeed = Math.sqrt((2 * 32.1522 * portHeight) + Math.pow(32.1522 * portDistance/Math.sqrt(2 * 32.1522 * portHeight), 2));
+    double shootAngle = Math.toDegrees(Math.asin(Math.sqrt(2 * 32.1522 * portHeight)/shootSpeed));
     SmartDashboard.putNumber("Motot Output", portDistance);
 
     if (Math.abs(error) < iLimit) {

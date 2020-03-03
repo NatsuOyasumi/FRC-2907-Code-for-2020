@@ -12,19 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.autonomous.AutoCommand0;
 import frc.robot.commands.autonomous.AutoCommand1;
+import frc.robot.commands.autonomous.AutoCommand19;
 import frc.robot.commands.autonomous.AutoCommand2;
 import frc.robot.commands.autonomous.AutoCommand3;
 import frc.robot.commands.autonomous.AutoCommand4;
 
 
 public class Autonomous {
+    public static double speed = 0.5;
 
     // Initialize and Declare auto classes.
-    private Command m_autoCommand0 = new AutoCommand0();
-    private Command m_autoCommand1 = new AutoCommand1();
-    private Command m_autoCommand2 = new AutoCommand2();
-    private Command m_autoCommand3 = new AutoCommand3();//goal targeting
-    private Command m_autoCommand4 = new AutoCommand4();
+    private Command m_autoCommand0 = new AutoCommand0(speed);
+    private Command m_autoCommand1 = new AutoCommand1(speed);
+    private Command m_autoCommand2 = new AutoCommand2(speed);
+    private Command m_autoCommand3 = new AutoCommand3(speed);//goal targeting
+    private Command m_autoCommand4 = new AutoCommand4(speed);
+    private Command m_autoCommand19 = new AutoCommand19(speed);
 
     SendableChooser<Command> chooser = new SendableChooser<Command>();
 
@@ -36,6 +39,7 @@ public class Autonomous {
         m_autoCommand2.schedule();
         m_autoCommand3.schedule();
         m_autoCommand4.schedule();
+        m_autoCommand19.schedule();
 
     }
 
@@ -48,6 +52,7 @@ public class Autonomous {
         chooser.addOption("Crazy", m_autoCommand2);
         chooser.addOption("TEST", m_autoCommand3);//goal targeting
         chooser.addOption("Spin", m_autoCommand4);
+        chooser.addOption("Run slow", m_autoCommand19);
         SmartDashboard.putData("AutoMode", chooser);
 
     }

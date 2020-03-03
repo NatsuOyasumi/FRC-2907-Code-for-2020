@@ -15,7 +15,11 @@ public class AutoCommand2 extends CommandBase {
   /**
    * Creates a new AutoCommand1.
    */
-  public AutoCommand2() {
+
+   double speed;
+
+   public AutoCommand2(double s) {
+    speed = s;
     addRequirements(Robot.m_arcadeDrive);
   }
 
@@ -34,13 +38,13 @@ public class AutoCommand2 extends CommandBase {
     double calTime = curTime - startTime;
 
     if (calTime <= 5) {
-      moveEasy(0, 1);
+      moveEasy(0, speed);
     } else if (calTime > 5 && calTime <= 10) {
-      moveEasy(0, -1);
+      moveEasy(0, -speed);
     } else if (calTime > 10 && calTime <= 11) {
-      moveEasy(1, 0);
+      moveEasy(speed, 0);
     } else if (calTime > 11 && calTime <= 16) {
-      moveEasy(0, 1);
+      moveEasy(0, speed);
     }
 
   }

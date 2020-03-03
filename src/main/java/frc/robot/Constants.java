@@ -32,17 +32,17 @@ public final class Constants {
     public static final int MOTORLEFT1 = 5;//Slave left
     public static final int MOTORLEFT2 = 6;//Slave left
 
-    public static final int HOPPER1 = 0;//left hopper 
-    public static final int HOPPER2 = 0;//right hopper
+    // public static final int HOPPER1 = 0;//left hopper 
+    // public static final int HOPPER2 = 0;//right hopper
 
     public static final int SHOOTER1 = 0;
     public static final int SHOOTER2 = 0;
-    public static final int SHOOTER3 = 0;
-    public static final int SHOOTER4 = 0;
+    public static final int TOWER = 0;
+    public static final int HOOD = 0;
 
-    public static final int INTAKE = 0;
+    // public static final int INTAKE = 0;
 
-    public static final int CLIMB = 0;
+    // public static final int CLIMB = 0;
 
     public static final int DRIVER_GAMEPAD = 0;
     public static final int MANIPJOI = 1;

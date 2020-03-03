@@ -10,32 +10,50 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.commands.DriveCommand;
 
 public class AutoCommand0 extends CommandBase {
   /**
    * Creates a new AutoCommand0.
    */
-  public AutoCommand0() {
+
+  double speed;
+
+//------------------------------------------------------------------------------------
+  double move = 1;//max movement speed value
+  double turn;//not set/changed anywhere
+
+  double curSpeedT = 0;//turn
+  final double speedInc = .2;//time to ramp
+  final double speedMulti = (1/speedInc) / 50; //iteration step, 50 is cycles per second
+  double curSpeedM = 0;
+//-------------------------------------------------------------------------------------
+  public AutoCommand0(double s) {
+    speed = s;
     addRequirements(Robot.m_arcadeDrive);
   }
 
-  private double startTime;
+  // private double startTime;
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    startTime = Timer.getFPGATimestamp();
+    // startTime = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double time = Timer.getFPGATimestamp();
-
-    if (time - startTime <= 1) {
-      moveEasy(1, 0);
+    time = 2;
+    //-----------------------------------------------------------------------------
+    if(time >= 0 && time <= 10){
+      curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
+     // Robot.m_arcadeDrive.manualDrive(curSpeedM, curSpeedT);//MM used to be curSpeedT
+     Robot.m_arcadeDrive.manualDrive(speed, 0);
+     curSpeedT = turn;
     }
-
+    //-------------------------------------------------------------------------------
   }
 
   // Called once the command ends or is interrupted.
@@ -48,8 +66,26 @@ public class AutoCommand0 extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+//---------------------------------------------------------------------------------------------------------------------------
+  private double moveCalculation(final double controller, final double multiplication, final double currentValue) {
 
-  public void moveEasy(double move, double turn) {
-    Robot.m_arcadeDrive.manualDrive(-move, turn);
+    double finalSpeed = currentValue;
+
+    //final speed iteration
+    finalSpeed += controller * multiplication;
+
+    //final speed limiting for ramp
+    if (finalSpeed > controller && controller > 0) { 
+      finalSpeed = controller; 
+    } else if(finalSpeed < controller && controller < 0) {
+      finalSpeed = controller;
+    }
+
+    //controller dead zone
+    if (controller < DriveCommand.stickDeadZoneThresh && controller > -DriveCommand.stickDeadZoneThresh) { finalSpeed = 0; }
+
+    return finalSpeed;
   }
+
+  //-----------------------------------------------------------------------------------------------------------------------------
 }
