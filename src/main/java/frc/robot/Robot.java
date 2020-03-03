@@ -18,17 +18,7 @@ import java.lang.Object;
 
 public class Robot extends TimedRobot {
 
-  // private WPI_TalonSRX hopperLeft;
-  // private WPI_TalonSRX hopperRight;
-
-  // private WPI_TalonSRX shooterMaster;
-  // private WPI_TalonSRX shooterSlave1;
-  // private WPI_TalonSRX shooterSlave2;
-  // private WPI_TalonSRX shooterHood;
-
-  // private WPI_TalonSRX intakeMaster;
-
-  // private WPI_TalonSRX climbMaster;
+  private WPI_TalonSRX climbMaster;//9
 
   private Command m_driveCommand = new DriveCommand();
 

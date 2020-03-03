@@ -26,8 +26,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public ShooterSubsystem() {
 
-      shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTER1);
-      shooterWheel1 = new WPI_TalonSRX(Constants.SHOOTER2);
+      shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTERL);
+      shooterWheel1 = new WPI_TalonSRX(Constants.SHOOTERR);
       shooterTower = new WPI_TalonSRX(Constants.TOWER);
       shooterHood = new WPI_TalonSRX(Constants.HOOD);
 
@@ -53,6 +53,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     return shootAngle;
   }
-  
+
 }
 

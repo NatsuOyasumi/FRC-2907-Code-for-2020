@@ -19,11 +19,14 @@ public final class Constants {
 
     public static double GSPEED = 1; //global speed
 
+    //practice bot - jAnKy
     // public static final int MOTORLEFT0 = 0;
     // public static final int MOTORLEFT1 = 1;
     // public static final int MOTORRIGHT0 = 14;
     // public static final int MOTORRIGHT1 = 15;
     
+    //actual robot with lots of motors and strong stuff and maybe will 
+    //eventually play the Imperial March out of the motors. :D
     public static final int MOTORRIGHT0 = 1;//Master right
     public static final int MOTORRIGHT1 = 2;//Slave right
     public static final int MOTORRIGHT2 = 3;//Slave right
@@ -32,18 +35,21 @@ public final class Constants {
     public static final int MOTORLEFT1 = 5;//Slave left
     public static final int MOTORLEFT2 = 6;//Slave left
 
-    // public static final int HOPPER1 = 0;//left hopper 
-    // public static final int HOPPER2 = 0;//right hopper
+    public static final int SHOOTERL = 7;
+    public static final int SHOOTERR = 8;
 
-    public static final int SHOOTER1 = 0;
-    public static final int SHOOTER2 = 0;
-    public static final int TOWER = 0;
-    public static final int HOOD = 0;
+    public static final int CLIMB = 9;
 
-    // public static final int INTAKE = 0;
+    public static final int TOWER = 10;
 
-    // public static final int CLIMB = 0;
+    public static final int HOPPERL = 11;//left hopper 
+    public static final int HOPPERR = 12;//right hopper
 
+    public static final int HOOD = 13;
+
+    public static final int INTAKE = 14;
+
+    
     public static final int DRIVER_GAMEPAD = 0;
     public static final int MANIPJOI = 1;
 }
