@@ -21,6 +21,8 @@ public class DriveCommand extends CommandBase {
   final double speedMulti = (1/speedInc) / 50; 
   double curSpeedM = 0;
 
+  double currentZero = 0;
+
   public static final double stickDeadZoneThresh = .01;
   public static final double targingDeadZoneThresh = .15;
   public static final double magicMotionDeadZoneThresh = 1;
