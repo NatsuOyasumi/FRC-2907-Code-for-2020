@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -22,7 +23,7 @@ public class DriveCommand extends CommandBase {
 
   public static final double stickDeadZoneThresh = .01;
   public static final double targingDeadZoneThresh = .15;
-  // public static final double magicMotionDeadZoneThresh = 1;
+  public static final double magicMotionDeadZoneThresh = 1;
 
   public DriveCommand() {
     addRequirements(Robot.m_arcadeDrive);
@@ -48,26 +49,29 @@ public class DriveCommand extends CommandBase {
 
   }
 
-  // private double magicMotion() {
-  //   double motorOutput = 0.0;
+  private double magicMotion() {
+    double motorOutput = 0.0;
 
-  //   if(curSpeedT != 0) {
-  //       //if driver controlling, reset gryo/forwards
-  //       //currentZero = Robot.gyro.getYaw();
-  //       Robot.gyro.reset();
-  //       motorOutput = curSpeedT;
-  //   } else {
-  //     if(Math.abs(Robot.gyro.getYaw()) > magicMotionDeadZoneThresh) {
-  //       //motorOutput is proportional to how far off the yaw
-  //       //is. If it turns out that it is too strong or not
-  //       //strong enough, change the 180.
-  //       //Yaw should never be greater than the denominator though
-  //       //because motorOutput is -1 to 1, so it would set to max.
-  //      motorOutput = (-1) * (Robot.gyro.getYaw() / 180);;;;
-  //     }
-  //   }
-  //   return motorOutput;
-  // }
+    if(curSpeedT != 0) {
+        //if driver controlling, reset gryo/forwards
+        currentZero = Robot.gyro.getYaw();
+        //Robot.gyro.reset();
+        motorOutput = curSpeedT;
+    } else {
+      if(Math.abs(currentZero - Robot.gyro.getYaw()) > magicMotionDeadZoneThresh) {
+        //If the difference beteen the last set currentZero direction and the current direction
+        //of the Robot is greater than what's allowed, correct it.
+
+        //motorOutput is proportional to how far off the yaw
+        //is. If it turns out that it is too strong or not
+        //strong enough, change the 180.
+        //Yaw should never be greater than the denominator though
+        //because motorOutput is -1 to 1, so it would set to max.
+       motorOutput = (-1) * (Robot.gyro.getYaw() / 180);
+      }
+    }
+    return motorOutput;
+  }//end magicMotion
 
   // Called once the command ends or is interrupted.
   @Override
@@ -99,11 +103,9 @@ public class DriveCommand extends CommandBase {
 
     return finalSpeed;
   }
-
   
 
-  
-
+  private void hopperManager() {
+    //Robot.getHopperLeft()
+  }
 }
-
-  
