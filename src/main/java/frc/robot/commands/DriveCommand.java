@@ -71,14 +71,12 @@ public class DriveCommand extends CommandBase {
     if(Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
       //goal targeting
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
-      System.out.print("holding X ");
       Robot.m_arcadeDrive.manualDrive(curSpeedM, targetGoalCalc());
     } else {
       turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2); //* -1;//is also inverted
 
       //normal movement
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
-      System.out.print("manualDrive ");
       Robot.m_arcadeDrive.manualDrive(curSpeedM, magicMotion());//MM used to be curSpeedT
       //curSpeedT = moveCalculation(turn, speedMulti, curSpeedT);
       curSpeedT = turn;

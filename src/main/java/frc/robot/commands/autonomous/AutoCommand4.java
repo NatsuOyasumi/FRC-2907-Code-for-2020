@@ -49,7 +49,6 @@ public class AutoCommand4 extends CommandBase {
   }
 
   public void moveEasy(double move, double turn) {
-    System.out.print("autonomous 4 ");
     Robot.m_arcadeDrive.manualDrive(-move, turn);
   }
 }
