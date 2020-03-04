@@ -28,7 +28,7 @@ public class ArcadeDrive extends SubsystemBase {
   public DifferentialDrive drive;
 
   public void manualDrive(double move, double turn) {
-    //System.out.println("manualDrive move " + move + " and turn " + turn);
+    System.out.println("manualDrive move " + move + " and turn " + turn);
     drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
   }
 

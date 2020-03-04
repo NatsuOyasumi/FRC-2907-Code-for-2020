@@ -44,7 +44,6 @@ public class DriveCommand extends CommandBase {
     turn = Robot.m_robotContainer.driverGamepad.getRawAxis(2);
     curSpeedM = moveCalculation(move, speedMulti, curSpeedM);
     curSpeedT = turn;
-    System.out.println("curSpeedM: " + curSpeedM + "  &&  curSpeedT:  " + curSpeedT);
 
     Robot.m_arcadeDrive.manualDrive(curSpeedM, curSpeedT);
     
