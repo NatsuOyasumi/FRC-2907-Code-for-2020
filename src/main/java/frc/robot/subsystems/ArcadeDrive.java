@@ -7,42 +7,44 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Autonomous;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.commands.DriveCommand;
+import com.ctre.phoenix.music.Orchestra;
 
 public class ArcadeDrive extends SubsystemBase {
 
   //Creating Motors
-  public static WPI_TalonSRX leftMaster;
-  public static WPI_TalonSRX leftSlave1;
-  public static WPI_TalonSRX leftSlave2;
-
-  public static WPI_TalonSRX rightMaster;
-  public static WPI_TalonSRX rightSlave1;
-  public static WPI_TalonSRX rightSLave2;
+  public static WPI_TalonFX leftMaster;
+  public static WPI_TalonFX leftSlave1;
+  public static WPI_TalonFX leftSlave2;
+  public static WPI_TalonFX rightMaster;
+  public static WPI_TalonFX rightSlave1;
+  public static WPI_TalonFX rightSLave2;
 
   public DifferentialDrive drive;
 
   public void manualDrive(double move, double turn) {
-    System.out.println("manualDrive move " + move + " and turn " + turn);
+    //if(Robot.counter > 50) 
+      //System.out.println("manualDrive move " + move + " and turn " + turn);
     drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
   }
 
   public ArcadeDrive() {
 
     //Motor Names
-    leftMaster = new WPI_TalonSRX(Constants.MOTORLEFT0);
-    leftSlave1 = new WPI_TalonSRX(Constants.MOTORLEFT1);
-    leftSlave2 = new WPI_TalonSRX(Constants.MOTORLEFT2);
-
-    rightMaster = new WPI_TalonSRX(Constants.MOTORRIGHT0);
-    rightSlave1 = new WPI_TalonSRX(Constants.MOTORRIGHT1);
-    rightSLave2 = new WPI_TalonSRX(Constants.MOTORRIGHT2);
+    leftMaster = new WPI_TalonFX(Constants.MOTORLEFT0);
+    leftSlave1 = new WPI_TalonFX(Constants.MOTORLEFT1);
+    leftSlave2 = new WPI_TalonFX(Constants.MOTORLEFT2);
+    rightMaster = new WPI_TalonFX(Constants.MOTORRIGHT0);
+    rightSlave1 = new WPI_TalonFX(Constants.MOTORRIGHT1);
+    rightSLave2 = new WPI_TalonFX(Constants.MOTORRIGHT2);
 
     //Declaring Masters
     leftSlave1.follow(leftMaster);
@@ -60,5 +62,6 @@ public class ArcadeDrive extends SubsystemBase {
 
   @Override
   public void periodic() { 
+    rightMaster.
   }
 }

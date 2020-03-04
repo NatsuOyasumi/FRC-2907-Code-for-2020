@@ -18,6 +18,7 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.ArcadeDrive;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.SRXMagEncoder_Relative;
 
 import java.lang.Object;
 
@@ -42,6 +43,16 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
 
+  public static int counter = 0;
+
+  //for encoder stuff, dont touch pls
+  //we also made the talon motors public static to make this work
+
+  
+  /*  //These are actually FX's not SRX's so we need a different encoder class
+  public static SRXMagEncoder_Relative encoderLeft = new SRXMagEncoder_Relative(ArcadeDrive.leftMaster);
+  public static SRXMagEncoder_Relative encoderRight = new SRXMagEncoder_Relative(ArcadeDrive.rightMaster);
+  */
 
   @Override
   public void robotInit() {
@@ -60,6 +71,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    //At the moment these don't exist...
+    //SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
+    //SmartDashboard.putNumber("Encoder for LeftMaster ", encoderLeft.getPosition());
+    SmartDashboard.updateValues();
+    //if(counter % 50 == 0)
+      //System.out.println("EncoderRight position: " + encoderRight.getPosition());
+    //counter++;
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
     SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
@@ -81,8 +99,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    //SmartDashboard.putNumber(key, value);
-    SmartDashboard.updateValues();
   }
 
   @Override

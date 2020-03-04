@@ -7,14 +7,23 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class PneumaticSubsystem extends SubsystemBase {
   /**
    * Creates a new PneumaticSubsystem.
    */
-  public PneumaticSubsystem() {
 
+  private Solenoid leftSolenoid;
+  private Solenoid rightSolenoid;
+  private Compressor compressor;
+
+  public PneumaticSubsystem() {
+    leftSolenoid = new Solenoid(Constants.SOLENOIDL);
+    rightSolenoid = new Solenoid(Constants.SOLENOIDR);
   }
 
   @Override
