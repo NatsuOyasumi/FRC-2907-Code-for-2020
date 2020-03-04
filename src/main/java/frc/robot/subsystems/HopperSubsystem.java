@@ -6,36 +6,19 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
-public class IntakeSubsystem extends SubsystemBase {
+public class HopperSubsystem extends SubsystemBase {
   /**
-   * Creates a new IntakeSubsystem.
+   * Creates a new HopperSubsystem.
    */
+  public HopperSubsystem() {
 
-  private WPI_TalonSRX hopperLeft;//11
-  private WPI_TalonSRX hopperRight;//12
-  private WPI_TalonSRX intake;//14
-
-  public IntakeSubsystem() {
-    hopperLeft = new WPI_TalonSRX(Constants.HOPPERL);
-    hopperRight = new WPI_TalonSRX(Constants.HOPPERR);
-    intake = new WPI_TalonSRX(Constants.INTAKE);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
-  public void intakeManager(double speed) {
-
-    intake.set(speed);
-
-  }
-
 }

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
 
   public Joystick driverGamepad = new Joystick(Constants.DRIVER_GAMEPAD);
+  public Joystick manipGamepad = new Joystick(Constants.MANIP_GAMEPAD);
 
   public RobotContainer() {
     configureButtonBindings();

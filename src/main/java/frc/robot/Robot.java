@@ -13,21 +13,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import edu.wpi.first.wpilibj.TalonSRX;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.ArcadeDrive;
+import frc.robot.subsystems.IntakeSubsystem;
+
 import java.lang.Object;
 
 public class Robot extends TimedRobot {
 
   private WPI_TalonSRX climbMaster;//9
 
-  private Command m_driveCommand = new DriveCommand();
-
   static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
   public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
   public static NetworkTableEntry ta = limelight.getEntry("ta");
+
+  private Command m_driveCommand = new DriveCommand();
+  private Command m_intakeCommand = new IntakeCommand();
   
   public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
+  public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
   public static AHRS gyro;
@@ -35,15 +41,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    //shooterSlave1.follow(shooterMaster);
-    //shooterSlave2.follow(shooterMaster);
 
     m_robotContainer = new RobotContainer();
     m_driveCommand.schedule();
     m_autonomous.scheduleAuto();
     m_autonomous.getAutonomous();
     try {
-    gyro = new AHRS();
+      gyro = new AHRS();
     } catch(RuntimeException ex ) {
       ex.printStackTrace();
     }
@@ -78,11 +82,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     m_driveCommand.schedule();
+    m_intakeCommand.schedule();
   }
 
   @Override
   public void teleopPeriodic() {
-
+    
   }
 
   @Override
