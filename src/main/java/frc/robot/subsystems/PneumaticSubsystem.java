@@ -20,14 +20,35 @@ public class PneumaticSubsystem extends SubsystemBase {
   private Solenoid leftSolenoid;
   private Solenoid rightSolenoid;
   private Compressor compressor;
+  
 
   public PneumaticSubsystem() {
     leftSolenoid = new Solenoid(Constants.SOLENOIDL);
     rightSolenoid = new Solenoid(Constants.SOLENOIDR);
+    compressor = new Compressor(Constants.COMPRESSOR);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void pneumaticHandler(boolean position) {
+
+    leftSolenoid.set(position);
+    rightSolenoid.set(position);
+
+  }
+
+  public void compressorOn() {
+    compressor.start();
+    if (compressor.getPressureSwitchValue() == false) {
+      compressorStop();
+    }
+  }
+
+  public void compressorStop() {
+    compressor.stop();
+  }
+
 }
