@@ -60,15 +60,8 @@ public class Autonomous {
         chooser.addOption("Spin", m_autoCommand4);
         chooser.addOption("Run slow", m_autoCommand19);
         SmartDashboard.putData("AutoMode", chooser);
-       // try {
-        SmartDashboard.putNumber("Encoder Stuff (the right one(EncoderRight))", encoderRight.getPosition());
-        SmartDashboard.putNumber("Encoder Stuff (the left one(EncoderLeft))", encoderLeft.getPosition());
-       //SmartDashboard.putNumber(key, value)
-        //} catch(IllegalArgumentException e) {
-          //  e.printStackTrace();
-            //It will try to do SmartDashboard.putData(...); If it fails for some reason, it will
-            //catch the error and print out the error.
-       // }
+        SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
+        SmartDashboard.putNumber("Encoder for LeftMaster", encoderLeft.getPosition());
     }
 
     // On autonomous init start picked.
