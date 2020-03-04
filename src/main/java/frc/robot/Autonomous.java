@@ -33,8 +33,8 @@ public class Autonomous {
 
     SendableChooser<Command> chooser = new SendableChooser<Command>();
 
-    private SRXMagEncoder_Relative encoderLeft = new SRXMagEncoder_Relative(ArcadeDrive.leftMaster);
-    private SRXMagEncoder_Relative encoderRight = new SRXMagEncoder_Relative(ArcadeDrive.rightMaster);
+    public static SRXMagEncoder_Relative encoderLeft = new SRXMagEncoder_Relative(ArcadeDrive.leftMaster);
+    public static SRXMagEncoder_Relative encoderRight = new SRXMagEncoder_Relative(ArcadeDrive.rightMaster);
     //for encoder stuff, dont touch pls
     //we also made the talon motors public static to make this work
 

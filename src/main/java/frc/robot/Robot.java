@@ -81,6 +81,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+    //SmartDashboard.putNumber(key, value);
+    SmartDashboard.updateValues();
   }
 
   @Override

@@ -47,7 +47,7 @@ public class ShooterSubsystem extends SubsystemBase {
     portDistance = portHeight/(Math.tan((currentPosY + 28)*Math.PI/180));
     double shootSpeed = Math.sqrt((2 * 32.1522 * portHeight) + Math.pow(32.1522 * portDistance/Math.sqrt(2 * 32.1522 * portHeight), 2));
     double shootAngle = Math.toDegrees(Math.asin(Math.sqrt(2 * 32.1522 * portHeight)/shootSpeed));
-    //SmartDashboard.putNumber("Motot Output", portDistance);
+    //SmartDashboard.putNumber("Motor Output", portDistance);
 
     return shootAngle;
   }
