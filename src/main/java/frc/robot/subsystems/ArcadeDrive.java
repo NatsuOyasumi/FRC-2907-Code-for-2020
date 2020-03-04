@@ -17,13 +17,13 @@ import frc.robot.commands.DriveCommand;
 public class ArcadeDrive extends SubsystemBase {
 
   //Creating Motors
-  private WPI_TalonSRX leftMaster;
-  private WPI_TalonSRX leftSlave1;
-  private WPI_TalonSRX leftSlave2;
+  public static WPI_TalonSRX leftMaster;
+  public static WPI_TalonSRX leftSlave1;
+  public static WPI_TalonSRX leftSlave2;
 
-  private WPI_TalonSRX rightMaster;
-  private WPI_TalonSRX rightSlave1;
-  private WPI_TalonSRX rightSLave2;
+  public static WPI_TalonSRX rightMaster;
+  public static WPI_TalonSRX rightSlave1;
+  public static WPI_TalonSRX rightSLave2;
 
   public DifferentialDrive drive;
 
