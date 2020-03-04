@@ -17,13 +17,9 @@ public class IntakeSubsystem extends SubsystemBase {
    * Creates a new IntakeSubsystem.
    */
 
-  private WPI_TalonSRX hopperLeft;//11
-  private WPI_TalonSRX hopperRight;//12
   private WPI_TalonSRX intake;//14
 
   public IntakeSubsystem() {
-    hopperLeft = new WPI_TalonSRX(Constants.HOPPERL);
-    hopperRight = new WPI_TalonSRX(Constants.HOPPERR);
     intake = new WPI_TalonSRX(Constants.INTAKE);
   }
 
@@ -33,9 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeManager(double speed) {
-
     intake.set(speed);
-
   }
 
 }

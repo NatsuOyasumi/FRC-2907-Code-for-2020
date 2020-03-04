@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import edu.wpi.first.wpilibj.TalonSRX;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.HopperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.ArcadeDrive;
+import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 import java.lang.Object;
@@ -30,9 +32,11 @@ public class Robot extends TimedRobot {
 
   private Command m_driveCommand = new DriveCommand();
   private Command m_intakeCommand = new IntakeCommand();
+  private Command m_hopperCommand = new HopperCommand();
   
   public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
   public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
 
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
@@ -83,6 +87,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     m_driveCommand.schedule();
     m_intakeCommand.schedule();
+    m_hopperCommand.schedule();
   }
 
   @Override

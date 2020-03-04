@@ -9,14 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.RobotContainer;
 
-public class IntakeCommand extends CommandBase {
+public class HopperCommand extends CommandBase {
   /**
-   * Creates a new IntakeCommand.
+   * Creates a new HopperCommand.
    */
-
-  public IntakeCommand() {
+  public HopperCommand() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -27,19 +26,16 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if (Robot.m_robotContainer.manipGamepad.getRawButton(2) == true) {
-      Robot.m_intakeSubsystem.intakeManager(-0.8);
+    if (Robot.m_robotContainer.manipGamepad.getRawButton(4) == true) {
+      Robot.m_hopperSubsystem.hopperManager(0.5);
     } else {
-      Robot.m_intakeSubsystem.intakeManager(0);
+      Robot.m_hopperSubsystem.hopperManager(0);
     }
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_intakeSubsystem.intakeManager(0);
   }
 
   // Returns true when the command should end.

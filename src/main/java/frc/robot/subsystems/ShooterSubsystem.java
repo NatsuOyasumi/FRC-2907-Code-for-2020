@@ -21,14 +21,12 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private WPI_TalonSRX shooterWheel0;
   private WPI_TalonSRX shooterWheel1;
-  private WPI_TalonSRX shooterTower;
   private WPI_TalonSRX shooterHood;
 
   public ShooterSubsystem() {
 
       shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTERL);
       shooterWheel1 = new WPI_TalonSRX(Constants.SHOOTERR);
-      shooterTower = new WPI_TalonSRX(Constants.TOWER);
       shooterHood = new WPI_TalonSRX(Constants.HOOD);
 
   }
