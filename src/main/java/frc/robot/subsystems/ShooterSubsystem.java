@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -55,6 +56,10 @@ public class ShooterSubsystem extends SubsystemBase {
     //SmartDashboard.putNumber("Motor Output", portDistance);
 
     return shootAngle;
+  }
+
+  public TalonSRX getShooterHood() {
+    return shooterHood;
   }
 
 }
