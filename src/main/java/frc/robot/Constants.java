@@ -48,8 +48,10 @@ public final class Constants {
     public static final int HOOD = 13;
 
     public static final int INTAKE = 14;
-    public static final int SOLENOIDR = 0;
-    public static final int SOLENOIDL = 1;
+    public static final int SOLENOIDR_EXTEND = 3;
+    public static final int SOLENOIDR_RETRACT = 2;
+    public static final int SOLENOIDL_EXTEND = 1;
+    public static final int SOLENOIDL_RETRACT = 0;
     public static final int COMPRESSOR = 0;
 
     public static final int DRIVER_GAMEPAD = 0;

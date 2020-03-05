@@ -27,7 +27,7 @@ public class HopperCommand extends CommandBase {
   @Override
   public void execute() {
     if (Robot.m_robotContainer.manipGamepad.getRawButton(4) == true) {
-      Robot.m_hopperSubsystem.hopperManager(0.5);
+      Robot.m_hopperSubsystem.hopperManager(1);
     } else {
       Robot.m_hopperSubsystem.hopperManager(0);
     }

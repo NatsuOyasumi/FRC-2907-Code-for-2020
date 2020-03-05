@@ -18,7 +18,7 @@ public class AutoCommand_MoveOffLine extends CommandBase {
 
     double speed;//how fast it should move, passed in to constructor
     double startTimeStamp;//clock time when it is first used --> run for ~1 second
-    final double runForNumofSecs = 0.5;//1 second is a long time...
+    final double runForNumofSecs = 1.5;//1 second is a long time...
 
   public AutoCommand_MoveOffLine(double s) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -43,6 +43,9 @@ public class AutoCommand_MoveOffLine extends CommandBase {
       //Just move forward
       Robot.m_arcadeDrive.manualDrive(speed, 0);//doesn't need full power..?
       //Not going to put ramping in here, assuming it will be handled elsewhere
+    }
+    else {
+      startTimeStamp = Timer.getFPGATimestamp();
     }
   }
 

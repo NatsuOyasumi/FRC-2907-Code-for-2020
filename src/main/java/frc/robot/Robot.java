@@ -80,6 +80,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    //System.out.println("robot periodic");
     //At the moment these don't exist...
     //SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
     //SmartDashboard.putNumber("Encoder for LeftMaster ", encoderLeft.getPosition());

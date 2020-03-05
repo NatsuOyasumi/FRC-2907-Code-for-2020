@@ -28,7 +28,7 @@ public class AutoCalibrate extends CommandBase {
     }
 
     public static void callibrateIntake() {
-        Robot.m_pneumaticSubsystem.setRightLeft(false); // moves the intake up (false)
+        Robot.m_pneumaticSubsystem.pneumaticHandler(false); // moves the intake up (false)
     }
 
     public static void calibrate() {
