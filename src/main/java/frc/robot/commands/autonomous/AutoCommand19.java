@@ -29,6 +29,8 @@ public class AutoCommand19 extends CommandBase {
 
   @Override
   public void execute() {
+    AutoCommand_MoveOffLine.inUse = false;
+    
     //0.2 is too low, does nothing
     //0.3 is slow, but it turns the wheels
     //0.25 is too low, makes noise but wheels don't turn

@@ -23,6 +23,7 @@ import frc.robot.subsystems.ArcadeDrive;
 
 public class Autonomous {
     public static double speed = 0.5;
+    public static boolean currentlyUsing = false;
 
     // Initialize and Declare auto classes.
     private Command m_autoCommand0 = new AutoCommand0(speed);
@@ -68,6 +69,7 @@ public class Autonomous {
     // On autonomous init start picked.
     public void choosePicked() {
 
+        currentlyUsing = true;
         chooser.getSelected().schedule();
 
     }

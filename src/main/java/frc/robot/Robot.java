@@ -101,6 +101,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    Autonomous.currentlyUsing = false;
   }
 
   @Override
@@ -114,6 +115,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    Autonomous.currentlyUsing = false;
     m_driveCommand.schedule();
     m_intakeCommand.schedule();
     m_hopperCommand.schedule();
