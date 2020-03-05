@@ -16,6 +16,8 @@ import frc.robot.commands.autonomous.AutoCommand19;
 import frc.robot.commands.autonomous.AutoCommand2;
 import frc.robot.commands.autonomous.AutoCommand3;
 import frc.robot.commands.autonomous.AutoCommand4;
+import frc.robot.commands.autonomous.AutoCommand_AimTowardsGoal;
+import frc.robot.commands.autonomous.AutoCommand_MoveOffLine;
 import frc.robot.subsystems.ArcadeDrive;
 //example change
 
@@ -30,6 +32,9 @@ public class Autonomous {
     private Command m_autoCommand4 = new AutoCommand4(speed);
     private Command m_autoCommand19 = new AutoCommand19(speed);
 
+    private Command m_autoCommand_MoveOffLine = new AutoCommand_MoveOffLine(speed);
+    private Command m_autoCommand_AimTowardsGoal = new AutoCommand_AimTowardsGoal(speed);
+
     SendableChooser<Command> chooser = new SendableChooser<Command>();
 
     // Really don't know if this is needed but it worked so yeah.
@@ -41,6 +46,8 @@ public class Autonomous {
         m_autoCommand3.schedule();
         m_autoCommand4.schedule();
         m_autoCommand19.schedule();
+        m_autoCommand_MoveOffLine.schedule();//does the order matter here..?
+        m_autoCommand_AimTowardsGoal.schedule();
 
     }
 
@@ -53,6 +60,8 @@ public class Autonomous {
         chooser.addOption("TEST", m_autoCommand3);//goal targeting
         chooser.addOption("Spin", m_autoCommand4);
         chooser.addOption("Run slow", m_autoCommand19);
+        chooser.addOption("Move Straight Off Line", m_autoCommand_MoveOffLine);
+        chooser.addOption("Aim Towards Goal, Shoot", m_autoCommand_AimTowardsGoal);
         SmartDashboard.putData("AutoMode", chooser);
     }
 
