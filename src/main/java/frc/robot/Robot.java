@@ -61,6 +61,8 @@ public class Robot extends TimedRobot {
   public static SRXMagEncoder_Relative encoderRight = new SRXMagEncoder_Relative(ArcadeDrive.rightMaster);
   */
 
+  public static SRXMagEncoder_Relative encoderHood = new SRXMagEncoder_Relative(m_shooterSubsystem.getShooterHood());
+
   @Override
   public void robotInit() {
 
@@ -81,6 +83,7 @@ public class Robot extends TimedRobot {
     //At the moment these don't exist...
     //SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
     //SmartDashboard.putNumber("Encoder for LeftMaster ", encoderLeft.getPosition());
+    SmartDashboard.putNumber("Encoder for ShooterHood", encoderHood.getPosition());
     SmartDashboard.updateValues();
     //if(counter % 50 == 0)
       //System.out.println("EncoderRight position: " + encoderRight.getPosition());

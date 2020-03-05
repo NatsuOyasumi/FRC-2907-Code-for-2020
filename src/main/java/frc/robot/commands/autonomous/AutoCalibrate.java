@@ -8,37 +8,36 @@ import frc.robot.subsystems.ShooterSubsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.subsystems.PneumaticSubsystem;
 
-public class AutoCalibrate extends CommandBase{
-    private boolean HoodDown = false;
+public class AutoCalibrate extends CommandBase {
+    private static boolean HoodDown = false;
 
     public static void callibrateHood() {
 
-        /*int currentTicks = 0;
-        int pastTicks = -1;
+        double currentTicks = 0;
+        double pastTicks = 0;//used to be -1
 
-        Robot.m_shooterSubsystem.shooterHood.set(0.1); //negative = up, positive = down
+        Robot.m_shooterSubsystem.shooterHood.set(0.1); // negative = up, positive = down
         while (!HoodDown) {
-            currentTicks = enumerator.getTicks(); //enumerator class doesn't exist yet
+            currentTicks = Robot.encoderHood.getPosition();
             if (Math.abs(pastTicks - currentTicks) < 10) {
                 HoodDown = true;
-            }                                                //un-comment when we can access the encoder
+            } // un-comment when we can access the encoder
             pastTicks = currentTicks;
         }
         Robot.m_shooterSubsystem.shooterHood.set(0);
-    */}
-    public static void callibrateIntake() {
-        Robot.m_pneumaticSubsystem.setRightLeft(false); //moves the intake up (false)
     }
-    public static void calibrate(){
+
+    public static void callibrateIntake() {
+        Robot.m_pneumaticSubsystem.setRightLeft(false); // moves the intake up (false)
+    }
+
+    public static void calibrate() {
         callibrateHood();
         callibrateIntake();
     }
 
 }
 
-
 /*
- X   1. hood motor
- X   3. move intake up
- X   5. calibrateall 
-*/
+ * X 1. hood motor X 3. move intake up X 5. calibrateall
+ */
