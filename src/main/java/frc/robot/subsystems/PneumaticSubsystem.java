@@ -17,13 +17,18 @@ public class PneumaticSubsystem extends SubsystemBase {
    * Creates a new PneumaticSubsystem.
    */
 
-  private Solenoid leftSolenoid;
-  private Solenoid rightSolenoid;
+  private static Solenoid leftSolenoid;
+  private static Solenoid rightSolenoid;
   private Compressor compressor;
 
   public PneumaticSubsystem() {
     leftSolenoid = new Solenoid(Constants.SOLENOIDL);
     rightSolenoid = new Solenoid(Constants.SOLENOIDR);
+  }
+
+  public static void setRightLeft(boolean on) {
+    leftSolenoid.set(on);
+    rightSolenoid.set(on);
   }
 
   @Override

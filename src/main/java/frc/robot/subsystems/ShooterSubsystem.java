@@ -19,9 +19,9 @@ public class ShooterSubsystem extends SubsystemBase {
    * Creates a new AimSubsystem.
    */
 
-  private WPI_TalonSRX shooterWheel0;
-  private WPI_TalonSRX shooterWheel1;
-  private WPI_TalonSRX shooterHood;
+  public WPI_TalonSRX shooterWheel0;
+  public WPI_TalonSRX shooterWheel1;
+  public WPI_TalonSRX shooterHood;
 
   public ShooterSubsystem() {
 
@@ -37,8 +37,8 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
   
-    shooterWheel0.
-
+   // shooterWheel0.
+//was partially written so i commented it out....idk
   }
 
   private double hoodCalc() {

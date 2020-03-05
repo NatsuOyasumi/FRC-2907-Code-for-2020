@@ -19,6 +19,8 @@ import frc.robot.subsystems.ArcadeDrive;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SRXMagEncoder_Relative;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.autonomous.AutoCalibrate;
 
 import java.lang.Object;
 
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
   public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
   public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
+  public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
 
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
@@ -116,6 +119,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     CommandScheduler.getInstance().cancelAll();
+    AutoCalibrate.calibrate();
   }
 
   @Override
