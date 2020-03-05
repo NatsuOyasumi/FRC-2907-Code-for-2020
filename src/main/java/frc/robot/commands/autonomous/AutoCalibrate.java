@@ -27,7 +27,7 @@ public class AutoCalibrate extends CommandBase{
         Robot.m_shooterSubsystem.shooterHood.set(0);
     */}
     public static void callibrateIntake() {
-        robot.m_pneumaticSubsystem.setRightLeft(false); //moves the intake up (false)
+        Robot.m_pneumaticSubsystem.setRightLeft(false); //moves the intake up (false)
     }
     public static void calibrate(){
         callibrateHood();
