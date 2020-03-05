@@ -17,8 +17,8 @@ public class PneumaticSubsystem extends SubsystemBase {
    * Creates a new PneumaticSubsystem.
    */
 
-  private Solenoid leftSolenoid;
-  private Solenoid rightSolenoid;
+  private static Solenoid leftSolenoid;
+  private static Solenoid rightSolenoid;
   private Compressor compressor;
   
 
@@ -26,6 +26,11 @@ public class PneumaticSubsystem extends SubsystemBase {
     leftSolenoid = new Solenoid(Constants.SOLENOIDL);
     rightSolenoid = new Solenoid(Constants.SOLENOIDR);
     compressor = new Compressor(Constants.COMPRESSOR);
+  }
+
+  public static void setRightLeft(boolean on) {
+    leftSolenoid.set(on);
+    rightSolenoid.set(on);
   }
 
   @Override
@@ -40,15 +45,19 @@ public class PneumaticSubsystem extends SubsystemBase {
 
   }
 
-  public void compressorOn() {
-    compressor.start();
-    if (compressor.getPressureSwitchValue() == false) {
-      compressorStop();
+  public void compressorHandler(boolean compOn) {
+    
+    if (compOn == true) {
+      compressor.start();
+      if (compressor.getPressureSwitchValue() == false) {
+        compressor.stop();
+      }
+    } else {
+      compressor.stop();
     }
+
   }
 
-  public void compressorStop() {
-    compressor.stop();
-  }
+
 
 }

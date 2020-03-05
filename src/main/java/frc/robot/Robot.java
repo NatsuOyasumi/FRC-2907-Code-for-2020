@@ -15,10 +15,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.HopperCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.PneumaticCommand;
 import frc.robot.subsystems.ArcadeDrive;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.SRXMagEncoder_Relative;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.autonomous.AutoCalibrate;
 
 import java.lang.Object;
 
@@ -34,10 +38,13 @@ public class Robot extends TimedRobot {
   private Command m_driveCommand = new DriveCommand();
   private Command m_intakeCommand = new IntakeCommand();
   private Command m_hopperCommand = new HopperCommand();
+  private Command m_pneumaticCommand = new PneumaticCommand();
   
   public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
   public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
+  public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  public static PneumaticSubsystem m_pneumaticSubsystem = new PneumaticSubsystem();
 
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
@@ -106,6 +113,7 @@ public class Robot extends TimedRobot {
     m_driveCommand.schedule();
     m_intakeCommand.schedule();
     m_hopperCommand.schedule();
+    m_pneumaticCommand.schedule();
   }
 
   @Override
@@ -116,6 +124,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     CommandScheduler.getInstance().cancelAll();
+    AutoCalibrate.calibrate();
   }
 
   @Override
