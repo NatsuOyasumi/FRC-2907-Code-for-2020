@@ -45,7 +45,7 @@ public class AutoCommand0 extends CommandBase {
   @Override
   public void execute() {
     double time = Timer.getFPGATimestamp();
-    time = 2;
+    // time = 2;
     //-----------------------------------------------------------------------------
     if(time >= 0 && time <= 10){
       curSpeedM = moveCalculation(move, speedMulti, curSpeedM);

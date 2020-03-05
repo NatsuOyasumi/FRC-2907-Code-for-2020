@@ -37,8 +37,13 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
   
-   // shooterWheel0.
-//was partially written so i commented it out....idk
+  }
+
+  public void shooterHandler(double shooterSpeed) {
+
+    shooterWheel0.set(shooterSpeed);
+    shooterWheel1.set(shooterSpeed);
+
   }
 
   private double hoodCalc() {

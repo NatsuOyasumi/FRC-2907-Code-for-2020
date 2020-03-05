@@ -50,7 +50,7 @@ public final class Constants {
     public static final int INTAKE = 14;
     public static final int SOLENOIDR = 0;
     public static final int SOLENOIDL = 1;
-
+    public static final int COMPRESSOR = 0;
 
     public static final int DRIVER_GAMEPAD = 0;
     public static final int MANIP_GAMEPAD = 1;
