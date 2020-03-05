@@ -8,11 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class PneumaticCommand extends CommandBase {
   /**
    * Creates a new PneumaticCommand.
    */
+
+  private boolean pneumaticOn = false;
+
   public PneumaticCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -20,11 +24,27 @@ public class PneumaticCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    Robot.m_pneumaticSubsystem.compressorHandler(true);
+
+    if (Robot.m_robotContainer.manipGamepad.getRawButtonPressed(5) == true) {
+      
+      if (pneumaticOn == false) {
+        pneumaticOn = true;
+      } else {
+        pneumaticOn = false;
+      }
+      Robot.m_pneumaticSubsystem.pneumaticHandler(pneumaticOn);
+
+    }
+    
+
   }
 
   // Called once the command ends or is interrupted.
