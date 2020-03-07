@@ -28,7 +28,7 @@ public class ShooterCommand extends CommandBase {
   public void execute() {
 
     if (Robot.m_robotContainer.manipGamepad.getRawButton(3) == true) {
-      Robot.m_shooterSubsystem.shooterHandler(1);
+      Robot.m_shooterSubsystem.shooterHandler(0.3);
     } else {
       Robot.m_shooterSubsystem.shooterWheel0.set(0);
       Robot.m_shooterSubsystem.shooterWheel1.set(0);

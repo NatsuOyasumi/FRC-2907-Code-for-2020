@@ -144,10 +144,12 @@ public class Robot extends TimedRobot {
 	public void testPeriodic() {
   }
   
-  public static double Ramping(double currentValue, double rampMult, double targetValue) {
+  public static double Ramping(double currentValue, double rampMult, double rampTime, double targetValue) {
     //currentValue is the speed currently being used by the motor.
-    //rampMult is the multiplier value for ramping - such as increasing by 10% each time
-    //maxValue is the maxValue it can get up or down to - so whatever the joystick is at (usually)
+	//rampMult is the multiplier value for ramping - such as increasing by 10% each time
+	//rampTime is how long it should take to reach the targetValue
+	//targetValue is the max/min value it can get up or down to - so whatever the joystick is at (usually)
+	
     //speedingUp is whether it should be speeding up or slowing down
     boolean speedingUp = true;
     if(currentValue > targetValue) 
