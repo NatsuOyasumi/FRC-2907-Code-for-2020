@@ -15,18 +15,13 @@ public class AimCommand extends CommandBase {
    * Creates a new AimCommand.
    */
   public AimCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
+	  // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.m_robotContainer.driverGamepad.getRawButton(2) == true) {
+    if (Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
       Robot.m_aimSubsystem.targetGoalCalc();
     } else {
 

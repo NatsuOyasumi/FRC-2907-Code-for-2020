@@ -31,35 +31,35 @@ import java.lang.Object;
 
 public class Robot extends TimedRobot {
 
-  private WPI_TalonSRX climbMaster;//9
+	private WPI_TalonSRX climbMaster;//9
 
-  static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
-  public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
-  public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
-  public static NetworkTableEntry ta = limelight.getEntry("ta");
+	static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
+	public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
+	public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
+	public static NetworkTableEntry ta = limelight.getEntry("ta");
 
-  private Command m_driveCommand = new DriveCommand();
-  private Command m_intakeCommand = new IntakeCommand();
-  private Command m_hopperCommand = new HopperCommand();
-  private Command m_pneumaticCommand = new PneumaticCommand();
-  private Command m_shooterCommand = new ShooterCommand();
-  private Command m_aimCommand = new AimCommand();
-  
-  public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
-  public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
-  public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  public static PneumaticSubsystem m_pneumaticSubsystem = new PneumaticSubsystem();
-  public static AimSubsystem m_aimSubsystem = new AimSubsystem();
+	private Command m_driveCommand = new DriveCommand();
+	private Command m_intakeCommand = new IntakeCommand();
+	private Command m_hopperCommand = new HopperCommand();
+	private Command m_pneumaticCommand = new PneumaticCommand();
+	private Command m_shooterCommand = new ShooterCommand();
+	private Command m_aimCommand = new AimCommand();
 
-  public static Autonomous m_autonomous = new Autonomous();
-  public static RobotContainer m_robotContainer = new RobotContainer();
-  public static AHRS gyro;
+	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
+	public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+	public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
+	public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+	public static PneumaticSubsystem m_pneumaticSubsystem = new PneumaticSubsystem();
+	public static AimSubsystem m_aimSubsystem = new AimSubsystem();
 
-  public static int counter = 0;
+	public static Autonomous m_autonomous = new Autonomous();
+	public static RobotContainer m_robotContainer = new RobotContainer();
+	public static AHRS gyro;
 
-  //for encoder stuff, dont touch pls
-  //we also made the talon motors public static to make this work
+	public static int counter = 0;
+
+	//for encoder stuff, dont touch pls
+	//we also made the talon motors public static to make this work
 
   
   /*  //These are actually FX's not SRX's so we need a different encoder class
@@ -67,81 +67,81 @@ public class Robot extends TimedRobot {
   public static SRXMagEncoder_Relative encoderRight = new SRXMagEncoder_Relative(ArcadeDrive.rightMaster);
   */
 
-  public static SRXMagEncoder_Relative encoderHood = new SRXMagEncoder_Relative(m_shooterSubsystem.getShooterHood());
+	public static SRXMagEncoder_Relative encoderHood = new SRXMagEncoder_Relative(m_shooterSubsystem.getShooterHood());
 
-  @Override
-  public void robotInit() {
+	@Override
+	public void robotInit() {
 
-    m_robotContainer = new RobotContainer();
-    m_driveCommand.schedule();
-    m_autonomous.scheduleAuto();
-    m_autonomous.getAutonomous();
-    try {
-      gyro = new AHRS();
-    } catch(RuntimeException ex ) {
-      ex.printStackTrace();
-    }
-  
-  }
+		m_robotContainer = new RobotContainer();
+		m_driveCommand.schedule();
+		m_autonomous.scheduleAuto();
+		m_autonomous.getAutonomous();
+		try {
+			gyro = new AHRS();
+		} catch(RuntimeException ex ) {
+			ex.printStackTrace();
+		}
 
-  @Override
-  public void robotPeriodic() {
-    //System.out.println("robot periodic");
-    //At the moment these don't exist...
-    //SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
-    //SmartDashboard.putNumber("Encoder for LeftMaster ", encoderLeft.getPosition());
-    SmartDashboard.putNumber("Encoder for ShooterHood", encoderHood.getPosition());
-    SmartDashboard.updateValues();
-    //if(counter % 50 == 0)
-      //System.out.println("EncoderRight position: " + encoderRight.getPosition());
-    //counter++;
-    CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
-    SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
-    m_autonomous.getAutonomous();
-  }
+	}
 
-  @Override
-  public void disabledInit() {
-  }
+	@Override
+	public void robotPeriodic() {
+		//System.out.println("robot periodic");
+		//At the moment these don't exist...
+		//SmartDashboard.putNumber("Encoder for RightMaster", encoderRight.getPosition());
+		//SmartDashboard.putNumber("Encoder for LeftMaster ", encoderLeft.getPosition());
+		SmartDashboard.putNumber("Encoder for ShooterHood", encoderHood.getPosition());
+		SmartDashboard.updateValues();
+		//if(counter % 50 == 0)
+		//System.out.println("EncoderRight position: " + encoderRight.getPosition());
+		//counter++;
+		CommandScheduler.getInstance().run();
+		SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
+		SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
+		m_autonomous.getAutonomous();
+	}
 
-  @Override
-  public void disabledPeriodic() {
-    Autonomous.currentlyUsing = false;
-  }
+	@Override
+	public void disabledInit() {
+	}
 
-  @Override
-  public void autonomousInit() {
-    m_autonomous.choosePicked();
-  }
+	@Override
+	public void disabledPeriodic() {
+		Autonomous.currentlyUsing = false;
+	}
 
-  @Override
-  public void autonomousPeriodic() {
-  }
+	@Override
+	public void autonomousInit() {
+		m_autonomous.choosePicked();
+	}
 
-  @Override
-  public void teleopInit() {
-    Autonomous.currentlyUsing = false;
-    m_driveCommand.schedule();
-    m_intakeCommand.schedule();
-    m_hopperCommand.schedule();
-    m_pneumaticCommand.schedule();
-    m_shooterCommand.schedule();
-    m_aimCommand.schedule();
-  }
+	@Override
+	public void autonomousPeriodic() {
+	}
 
-  @Override
-  public void teleopPeriodic() {
-    
-  }
+	@Override
+	public void teleopInit() {
+		Autonomous.currentlyUsing = false;
+		m_driveCommand.schedule();
+		m_intakeCommand.schedule();
+		m_hopperCommand.schedule();
+		m_pneumaticCommand.schedule();
+		m_shooterCommand.schedule();
+		m_aimCommand.schedule();
+	}
 
-  @Override
-  public void testInit() {
-    CommandScheduler.getInstance().cancelAll();
-    AutoCalibrate.calibrate();
-  }
+	@Override
+	public void teleopPeriodic() {
+		SmartDashboard.putNumber("Shooter Encoder", Robot.m_shooterSubsystem.getSEncoderValue());
+	}
 
-  @Override
-  public void testPeriodic() {
-  }
+	@Override
+	public void testInit() {
+		CommandScheduler.getInstance().cancelAll();
+		AutoCalibrate.calibrate();
+	}
+
+	@Override
+	public void testPeriodic() {
+	}
 }

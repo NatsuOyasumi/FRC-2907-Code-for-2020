@@ -7,86 +7,89 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.TalonSRXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class ShooterSubsystem extends SubsystemBase {
-  /**
-   * Creates a new AimSubsystem.
-   */
+	/**
+	 * Creates a new AimSubsystem.
+	 */
 
-  public WPI_TalonSRX shooterWheel0;
-  public WPI_TalonSRX shooterWheel1;
-  public WPI_TalonSRX shooterHood;
+	public WPI_TalonSRX shooterWheel0;
+	public WPI_TalonSRX shooterWheel1;
+	public WPI_TalonSRX shooterHood;
 
-  public ShooterSubsystem() {
+	private final int TICKS_PER_REVOLUTION = 4096;
+	private final double GEAR_RATIO = 338d/36d;
+	private final double DEGREES_PER_REV = 360d/GEAR_RATIO;
 
-      shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTERL);
-      shooterWheel1 = new WPI_TalonSRX(Constants.SHOOTERR);
-      shooterHood = new WPI_TalonSRX(Constants.HOOD);
+	public ShooterSubsystem() {
 
-  }
+		shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTERL);
+		shooterWheel1 = new WPI_TalonSRX(Constants.SHOOTERR);
+		shooterHood = new WPI_TalonSRX(Constants.HOOD);
 
-  final double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
-  double portDistance;//distance horizantal to middle of goal
+		shooterHood.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 
-  @Override
-  public void periodic() {
-  
-  }
+	}
 
-  
+	final double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
+	double portDistance;//distance horizantal to middle of goal
 
-  public void hoodHandler(boolean direction) {
+	@Override
+	public void periodic() {
+	}
 
-    if (direction == true) {
-      shooterHood.set(0.35);
-    } else {
-      shooterHood.set(-0.35);
-    }
+	public int getSEncoderValue() {
+		return shooterHood.getSelectedSensorPosition();
+	}
 
-  }
+	public void hoodHandler(boolean direction) {
 
-  double shooterSpeed = 0;
-  public void shooterHandler(double maxSpeed) {
+		if (direction == true) {
+			shooterHood.set(0.35);
+		} else {
+			shooterHood.set(-0.35);
+		}
 
-    shooterSpeed = shooterRamping(shooterSpeed, maxSpeed);
+	}
 
-    shooterWheel0.set(shooterSpeed);
-    shooterWheel1.set(-shooterSpeed);
+	double shooterSpeed = 0;
+	public void shooterHandler(double maxSpeed) {
 
-  }
+		shooterSpeed = shooterRamping(shooterSpeed, maxSpeed);
 
-  private double hoodCalc() {
-    double currentPosY = Robot.ty.getDouble(0.0);
-    //Shooter calculations 'William'
-    portDistance = portHeight/(Math.tan((currentPosY + 28)*Math.PI/180));
-    double shootSpeed = Math.sqrt((2 * 32.1522 * portHeight) + Math.pow(32.1522 * portDistance/Math.sqrt(2 * 32.1522 * portHeight), 2));
-    double shootAngle = Math.toDegrees(Math.asin(Math.sqrt(2 * 32.1522 * portHeight)/shootSpeed));
-    //SmartDashboard.putNumber("Motor Output", portDistance);
+		shooterWheel0.set(shooterSpeed);
+		shooterWheel1.set(-shooterSpeed);
 
-    return shootAngle;
-  }
+	}
 
-  public TalonSRX getShooterHood() {
-    return shooterHood;
-  }
+	public double getHoodAngle(){
+		double revolutions = shooterHood.getSelectedSensorPosition() * DEGREES_PER_REV;
+		return revolutions;
+	}
 
-  private double shooterRamping(double curSpeed, double maxSpeed) {
+	public TalonSRX getShooterHood() {
+		return shooterHood;
+	}
 
-    final double speedInc = 1;
-    final double speedMulti = (1/speedInc) / 50; 
-    double speed = curSpeed + speedMulti;
-    speed = Math.max(0, Math.min(1, speed));
+	private double shooterRamping(double curSpeed, double maxSpeed) {
 
-    return speed;
+		final double speedInc = 1;
+		final double speedMulti = (1/speedInc) / 50;
+		double speed = curSpeed + speedMulti;
+		speed = Math.max(0, Math.min(1, speed));
 
-  }
+		return speed;
+
+	}
 
 }
 

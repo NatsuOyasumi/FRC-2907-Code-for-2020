@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class RobotContainer {
 
-  public Joystick driverGamepad = new Joystick(Constants.DRIVER_GAMEPAD);
-  public Joystick manipGamepad = new Joystick(Constants.MANIP_GAMEPAD);
+	public Joystick driverGamepad = new Joystick(Constants.DRIVER_GAMEPAD);
+	public Joystick manipGamepad = new Joystick(Constants.MANIP_GAMEPAD);
 
-  public RobotContainer() {
-    configureButtonBindings();
-  }
+	public RobotContainer() {
+		configureButtonBindings();
+	}
 
-  private void configureButtonBindings() {
-  }
+	private void configureButtonBindings() {
+	}
 
-  public Command getAutonomousCommand() {
-    return null;
-  }
+	public Command getAutonomousCommand() {
+		return null;
+	}
 
 }
