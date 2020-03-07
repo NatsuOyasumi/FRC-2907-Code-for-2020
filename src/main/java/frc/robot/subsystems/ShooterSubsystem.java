@@ -30,6 +30,8 @@ public class ShooterSubsystem extends SubsystemBase {
 	private final double GEAR_RATIO = 338d/36d;
 	private final double DEGREES_PER_REV = 360d/GEAR_RATIO;
 
+	double shooterSpeed = 0;
+
 	public ShooterSubsystem() {
 
 		shooterWheel0 = new WPI_TalonSRX(Constants.SHOOTERL);
@@ -61,7 +63,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
 	}
 
-	double shooterSpeed = 0;
 	public void shooterHandler(double maxSpeed) {
 
 		shooterSpeed = shooterRamping(shooterSpeed, maxSpeed);

@@ -59,8 +59,7 @@ public class Robot extends TimedRobot {
 	public static int counter = 0;
 
 	//for encoder stuff, dont touch pls
-	//we also made the talon motors public static to make this work
-
+	//we also made the talon motors public static to make this works
   
   /*  //These are actually FX's not SRX's so we need a different encoder class
   public static SRXMagEncoder_Relative encoderLeft = new SRXMagEncoder_Relative(ArcadeDrive.leftMaster);
@@ -143,5 +142,41 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void testPeriodic() {
-	}
+  }
+  
+  public static double Ramping(double currentValue, double rampMult, double targetValue) {
+    //currentValue is the speed currently being used by the motor.
+    //rampMult is the multiplier value for ramping - such as increasing by 10% each time
+    //maxValue is the maxValue it can get up or down to - so whatever the joystick is at (usually)
+    //speedingUp is whether it should be speeding up or slowing down
+    boolean speedingUp = true;
+    if(currentValue > targetValue) 
+      speedingUp = false;
+
+    double speed = currentValue;
+
+    if(speedingUp) {
+      //if speeding up, then increment speed by % until at or above targetVal, then set to targetValue
+      speed += (targetValue*rampMult);
+      if(speed > targetValue) {
+        speed = targetValue;
+      }
+    }
+    else {
+      //if slowing down, then decrement speed by % until at or below targetValue, then set to targetValue
+      //So if slowing down to halfway instead of 0, stop at speed instead of just going to 0.
+      speed -= (targetValue*rampMult);
+      if(speed < targetValue) {
+        speed = targetValue;
+      }
+    }
+
+    //if joystick is almost but not quite 0, so isn't actually being used
+    if(targetValue < DriveCommand.stickDeadZoneThresh && targetValue > -(DriveCommand.stickDeadZoneThresh)) {
+      speed = 0;
+    }
+
+    return speed;
+  }//end ramping method
+  
 }
