@@ -23,8 +23,6 @@ public class AimCommand extends CommandBase {
   public void execute() {
     if (Robot.m_robotContainer.driverGamepad.getRawButton(2)) {
       Robot.m_aimSubsystem.targetGoalCalc();
-    } else {
-
     }
   }
 
