@@ -20,47 +20,47 @@ import frc.robot.commands.DriveCommand;
 
 public class ArcadeDrive extends SubsystemBase {
 
-  //Creating Motors
-  public static WPI_TalonFX leftMaster;
-  public static WPI_TalonFX leftSlave1;
-  public static WPI_TalonFX leftSlave2;
-  public static WPI_TalonFX rightMaster;
-  public static WPI_TalonFX rightSlave1;
-  public static WPI_TalonFX rightSLave2;
+	//Creating Motors
+	public static WPI_TalonFX leftMaster;
+	public static WPI_TalonFX leftSlave1;
+	public static WPI_TalonFX leftSlave2;
+	public static WPI_TalonFX rightMaster;
+	public static WPI_TalonFX rightSlave1;
+	public static WPI_TalonFX rightSLave2;
 
-  public DifferentialDrive drive;
+	public DifferentialDrive drive;
 
-  public void manualDrive(double move, double turn) {
-    //if(Robot.counter > 50) 
-      //System.out.println("manualDrive move " + move + " and turn " + turn);
-    drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
-  }
+	public void manualDrive(double move, double turn) {
+		//if(Robot.counter > 50)
+		//System.out.println("manualDrive move " + move + " and turn " + turn);
+		drive.arcadeDrive(move * Constants.GSPEED, turn * Constants.GSPEED);
+	}
 
-  public ArcadeDrive() {
+	public ArcadeDrive() {
 
-    //Motor Names
-    leftMaster = new WPI_TalonFX(Constants.MOTORLEFT0);
-    leftSlave1 = new WPI_TalonFX(Constants.MOTORLEFT1);
-    leftSlave2 = new WPI_TalonFX(Constants.MOTORLEFT2);
-    rightMaster = new WPI_TalonFX(Constants.MOTORRIGHT0);
-    rightSlave1 = new WPI_TalonFX(Constants.MOTORRIGHT1);
-    rightSLave2 = new WPI_TalonFX(Constants.MOTORRIGHT2);
+		//Motor Names
+		leftMaster = new WPI_TalonFX(Constants.MOTORLEFT0);
+		leftSlave1 = new WPI_TalonFX(Constants.MOTORLEFT1);
+		leftSlave2 = new WPI_TalonFX(Constants.MOTORLEFT2);
+		rightMaster = new WPI_TalonFX(Constants.MOTORRIGHT0);
+		rightSlave1 = new WPI_TalonFX(Constants.MOTORRIGHT1);
+		rightSLave2 = new WPI_TalonFX(Constants.MOTORRIGHT2);
 
-    //Declaring Masters
-    leftSlave1.follow(leftMaster);
-    leftSlave2.follow(leftMaster);
+		//Declaring Masters
+		leftSlave1.follow(leftMaster);
+		leftSlave2.follow(leftMaster);
 
-    rightSlave1.follow(rightMaster);
-    rightSLave2.follow(rightMaster);
+		rightSlave1.follow(rightMaster);
+		rightSLave2.follow(rightMaster);
 
-    drive = new DifferentialDrive(leftMaster, rightMaster);
-  }
+		drive = new DifferentialDrive(leftMaster, rightMaster);
+	}
 
-  public void initDefaultCommand(){
-    setDefaultCommand(new DriveCommand());
-  }
+	public void initDefaultCommand(){
+		setDefaultCommand(new DriveCommand());
+	}
 
-  @Override
-  public void periodic() { 
-  }
+	@Override
+	public void periodic() {
+	}
 }

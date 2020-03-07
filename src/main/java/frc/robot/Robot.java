@@ -33,11 +33,6 @@ public class Robot extends TimedRobot {
 
 	private WPI_TalonSRX climbMaster;//9
 
-	static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
-	public static NetworkTableEntry tx = limelight.getEntry("tx");//target x position in camera
-	public static NetworkTableEntry ty = limelight.getEntry("ty");//target y position in camera
-	public static NetworkTableEntry ta = limelight.getEntry("ta");
-
 	private Command m_driveCommand = new DriveCommand();
 	private Command m_intakeCommand = new IntakeCommand();
 	private Command m_hopperCommand = new HopperCommand();
@@ -51,6 +46,8 @@ public class Robot extends TimedRobot {
 	public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
 	public static PneumaticSubsystem m_pneumaticSubsystem = new PneumaticSubsystem();
 	public static AimSubsystem m_aimSubsystem = new AimSubsystem();
+
+	public static LimelightWrapper m_limelightWrapper = new LimelightWrapper();
 
 	public static Autonomous m_autonomous = new Autonomous();
 	public static RobotContainer m_robotContainer = new RobotContainer();
@@ -72,6 +69,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 
+		m_limelightWrapper.limelight.getEntry("ledMode").setNumber(1);
 		m_robotContainer = new RobotContainer();
 		m_driveCommand.schedule();
 		m_autonomous.scheduleAuto();
@@ -96,8 +94,8 @@ public class Robot extends TimedRobot {
 		//System.out.println("EncoderRight position: " + encoderRight.getPosition());
 		//counter++;
 		CommandScheduler.getInstance().run();
-		SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
-		SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
+		SmartDashboard.putNumber("LimelightX", m_limelightWrapper.tx.getDouble(0.0));
+		SmartDashboard.putNumber("LimelightY", m_limelightWrapper.ty.getDouble(0.0));
 		m_autonomous.getAutonomous();
 	}
 
@@ -113,6 +111,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		m_autonomous.choosePicked();
+		m_limelightWrapper.limelight.getEntry("ledMode").setNumber(1);
 	}
 
 	@Override
@@ -122,6 +121,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		Autonomous.currentlyUsing = false;
+		m_limelightWrapper.limelight.getEntry("ledMode").setNumber(0);
 		m_driveCommand.schedule();
 		m_intakeCommand.schedule();
 		m_hopperCommand.schedule();
