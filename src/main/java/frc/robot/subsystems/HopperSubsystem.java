@@ -21,11 +21,17 @@ public class HopperSubsystem extends SubsystemBase {
   private WPI_TalonSRX hopperRight;//12
   private WPI_TalonSRX shooterTower;
 
+  // private  topTowerSensor;
+  // private  bottomTowerSensor;
+
   public HopperSubsystem() {
 
     hopperLeft = new WPI_TalonSRX(Constants.HOPPERL);
     hopperRight = new WPI_TalonSRX(Constants.HOPPERR);
     shooterTower = new WPI_TalonSRX(Constants.TOWER);
+
+    // topTowerSensor = new (Constants.TOP_TOWER_SENSOR);
+    // bottomTowerSensor = new (Constants.BOTTOM_TOWER_SENSOR);
     
   }
 
@@ -37,8 +43,11 @@ public class HopperSubsystem extends SubsystemBase {
 
     hopperLeft.set(speed/1.5);
     hopperRight.set(speed);
-    shooterTower.set(-speed);
 
+  }
+
+  public void towerManager(double speed) {
+    shooterTower.set(-speed);
   }
 
 }

@@ -30,9 +30,9 @@ public class PneumaticCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if (Robot.m_robotContainer.manipGamepad.getRawButtonPressed(6) == true) {
-      Robot.m_pneumaticSubsystem.compressorHandler(!Robot.m_pneumaticSubsystem.getCompressorPowerOn());
-    }
+    // if (Robot.m_robotContainer.manipGamepad.getRawButtonPressed(6) == true) {
+    //   Robot.m_pneumaticSubsystem.compressorHandler(!Robot.m_pneumaticSubsystem.getCompressorPowerOn());
+    // }
 
     if (Robot.m_robotContainer.manipGamepad.getRawButtonPressed(5) == true) {
       
@@ -45,7 +45,7 @@ public class PneumaticCommand extends CommandBase {
 
     }
     
-//System.out.println("PneuamticCommand: " + pneumaticOn);
+  //System.out.println("PneuamticCommand: " + pneumaticOn);
   }
 
   // Called once the command ends or is interrupted.

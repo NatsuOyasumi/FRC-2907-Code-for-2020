@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class HopperCommand extends CommandBase {
+public class ShooterCommand extends CommandBase {
   /**
-   * Creates a new HopperCommand.
+   * Creates a new ShooterCommand.
    */
-  public HopperCommand() {
+  public ShooterCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,18 +25,24 @@ public class HopperCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {                                           //If sensor says don't
-    // if (Robot.m_robotContainer.manipGamepad.getRawButton(4) == true ) {
-    //   Robot.m_hopperSubsystem.hopperManager(1);
-    //   //don't move tower any further
-    // }
-    if (Robot.m_robotContainer.manipGamepad.getRawButton(4) == true) {
-      Robot.m_hopperSubsystem.hopperManager(1);
-      Robot.m_hopperSubsystem.towerManager(1);
+  public void execute() {
+
+    if (Robot.m_robotContainer.manipGamepad.getRawButton(3) == true) {
+      Robot.m_shooterSubsystem.shooterHandler(1);
     } else {
-      Robot.m_hopperSubsystem.hopperManager(0);
-      Robot.m_hopperSubsystem.towerManager(0);
+      Robot.m_shooterSubsystem.shooterWheel0.set(0);
+      Robot.m_shooterSubsystem.shooterWheel1.set(0);
     }
+
+    //Robot.m_shooterSubsystem.shooterHood.set(.5);
+    if (Robot.m_robotContainer.manipGamepad.getRawAxis(1) < -.8) {
+      Robot.m_shooterSubsystem.hoodHandler(true);
+    } else if (Robot.m_robotContainer.manipGamepad.getRawAxis(1) > .8) {
+      Robot.m_shooterSubsystem.hoodHandler(false);
+    } else {
+      Robot.m_shooterSubsystem.shooterHood.set(0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.

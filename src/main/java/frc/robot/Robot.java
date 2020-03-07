@@ -11,11 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AimCommand;
 //import edu.wpi.first.wpilibj.TalonSRX;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.HopperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.PneumaticCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.subsystems.AimSubsystem;
 import frc.robot.subsystems.ArcadeDrive;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -39,12 +42,15 @@ public class Robot extends TimedRobot {
   private Command m_intakeCommand = new IntakeCommand();
   private Command m_hopperCommand = new HopperCommand();
   private Command m_pneumaticCommand = new PneumaticCommand();
+  private Command m_shooterCommand = new ShooterCommand();
+  private Command m_aimCommand = new AimCommand();
   
   public static ArcadeDrive m_arcadeDrive = new ArcadeDrive();
   public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   public static HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
   public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   public static PneumaticSubsystem m_pneumaticSubsystem = new PneumaticSubsystem();
+  public static AimSubsystem m_aimSubsystem = new AimSubsystem();
 
   public static Autonomous m_autonomous = new Autonomous();
   public static RobotContainer m_robotContainer = new RobotContainer();
@@ -118,6 +124,8 @@ public class Robot extends TimedRobot {
     m_intakeCommand.schedule();
     m_hopperCommand.schedule();
     m_pneumaticCommand.schedule();
+    m_shooterCommand.schedule();
+    m_aimCommand.schedule();
   }
 
   @Override

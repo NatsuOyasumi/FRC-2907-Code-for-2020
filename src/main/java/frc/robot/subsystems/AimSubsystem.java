@@ -31,9 +31,13 @@ public class AimSubsystem extends SubsystemBase {
   }
 
   //Targeting code
-  private double targetGoalCalc() {
+  public void targetGoalCalc() {
 
+    // get relative x position
     double currentPos = Robot.tx.getDouble(0.0);
+    System.out.println(currentPos);
+
+    // calculations
     double error = setPoint - currentPos;
     double dt = Timer.getFPGATimestamp() - lastTimeStamp;
 
@@ -41,19 +45,28 @@ public class AimSubsystem extends SubsystemBase {
       errorSum += error * dt; 
     }
 
-    double errorRate = error - lastError; //dt;
-    double motorOutput = kp * error  + kd * errorRate + ki * errorSum; //turn power calculation
+    double errorRate = error - lastError; // dt;
+    double motorOutput = kp * error  + ki * errorSum;
 
-    //Targeting dead zone
     if (error < .15 && error > -.15) {
       motorOutput = 0;
     }
 
-    return motorOutput;
+    // move motors
+    moveEasy(0, -motorOutput);
+
+    // update variables
+    lastTimeStamp = Timer.getFPGATimestamp();
+    lastError = error;
+
   }
+
+  public void moveEasy(double move, double turn) {
+    Robot.m_arcadeDrive.manualDrive(-move, turn);
+  }
+  
 
   @Override
   public void periodic() {
-    targetGoalCalc();
   }
 }

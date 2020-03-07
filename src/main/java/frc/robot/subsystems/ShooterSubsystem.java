@@ -40,10 +40,25 @@ public class ShooterSubsystem extends SubsystemBase {
   
   }
 
-  public void shooterHandler(double shooterSpeed) {
+  
+
+  public void hoodHandler(boolean direction) {
+
+    if (direction == true) {
+      shooterHood.set(0.35);
+    } else {
+      shooterHood.set(-0.35);
+    }
+
+  }
+
+  double shooterSpeed = 0;
+  public void shooterHandler(double maxSpeed) {
+
+    shooterSpeed = shooterRamping(shooterSpeed, maxSpeed);
 
     shooterWheel0.set(shooterSpeed);
-    shooterWheel1.set(shooterSpeed);
+    shooterWheel1.set(-shooterSpeed);
 
   }
 
@@ -60,6 +75,17 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public TalonSRX getShooterHood() {
     return shooterHood;
+  }
+
+  private double shooterRamping(double curSpeed, double maxSpeed) {
+
+    final double speedInc = 1;
+    final double speedMulti = (1/speedInc) / 50; 
+    double speed = curSpeed + speedMulti;
+    speed = Math.max(0, Math.min(1, speed));
+
+    return speed;
+
   }
 
 }

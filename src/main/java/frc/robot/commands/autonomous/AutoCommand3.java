@@ -68,7 +68,7 @@ public class AutoCommand3 extends CommandBase {
     }
 
     double errorRate = error - lastError; // dt;
-    double motorOutput = kp * error  + kd * errorRate + ki * errorSum;
+    double motorOutput = kp * error  + ki * errorSum;
 
     if (error < .15 && error > -.15) {
       motorOutput = 0;

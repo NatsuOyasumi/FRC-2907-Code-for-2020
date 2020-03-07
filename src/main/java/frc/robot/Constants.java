@@ -45,7 +45,7 @@ public final class Constants {
     public static final int HOPPERL = 11;//left hopper 
     public static final int HOPPERR = 12;//right hopper
 
-    public static final int HOOD = 13;
+    public static final int HOOD = 17;
 
     public static final int INTAKE = 14;
     public static final int SOLENOIDR_EXTEND = 3;
@@ -57,4 +57,6 @@ public final class Constants {
     public static final int DRIVER_GAMEPAD = 0;
     public static final int MANIP_GAMEPAD = 1;
 
+    public static final int TOP_TOWER_SENSOR = 8;//7 and 8
+    public static final int BOTTOM_TOWER_SENSOR = 7;
 }

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class AimCommand extends CommandBase {
   /**
@@ -25,6 +26,11 @@ public class AimCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.m_robotContainer.driverGamepad.getRawButton(2) == true) {
+      Robot.m_aimSubsystem.targetGoalCalc();
+    } else {
+
+    }
   }
 
   // Called once the command ends or is interrupted.

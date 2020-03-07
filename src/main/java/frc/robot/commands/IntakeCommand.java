@@ -29,7 +29,7 @@ public class IntakeCommand extends CommandBase {
   public void execute() {
 
     if (Robot.m_robotContainer.manipGamepad.getRawButton(2) == true) {
-      Robot.m_intakeSubsystem.intakeManager(-0.8);
+      Robot.m_intakeSubsystem.intakeManager(-1);
     } else {
       Robot.m_intakeSubsystem.intakeManager(0);
     }
