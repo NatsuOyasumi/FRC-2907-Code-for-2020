@@ -31,6 +31,9 @@ public class ShooterSubsystem extends SubsystemBase {
 	private final double DEGREES_PER_REV = 360d/GEAR_RATIO;
 
 	double shooterSpeed = 0;
+	
+	final double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
+	double portDistance;//distance horizantal to middle of goal
 
 	public ShooterSubsystem() {
 
@@ -41,9 +44,6 @@ public class ShooterSubsystem extends SubsystemBase {
 		shooterHood.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 
 	}
-
-	final double portHeight = 6;// height of goal(the center of the reflect tape area NOT the goal itself) in compaison to camera in feet
-	double portDistance;//distance horizantal to middle of goal
 
 	@Override
 	public void periodic() {

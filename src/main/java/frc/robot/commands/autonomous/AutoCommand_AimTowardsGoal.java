@@ -61,7 +61,7 @@ public class AutoCommand_AimTowardsGoal extends CommandBase {
     portDistance = portHeight/(Math.tan((currentPosY + 28)*Math.PI/180));
     double shootSpeed = Math.sqrt((2 * 32.1522 * portHeight) + Math.pow(32.1522 * portDistance/Math.sqrt(2 * 32.1522 * portHeight), 2));
     double shootAngle = Math.toDegrees(Math.asin(Math.sqrt(2 * 32.1522 * portHeight)/shootSpeed));
-    SmartDashboard.putNumber("Motor Output", portDistance);
+    SmartDashboard.putNumber("Port Distance", portDistance);
 
     if (Math.abs(error) < iLimit) {
       errorSum += error * dt; 
@@ -75,7 +75,7 @@ public class AutoCommand_AimTowardsGoal extends CommandBase {
     }
 
     // move motors
-    moveEasy(0, -motorOutput);
+    moveEasy(0, -motorOutput);//moving forward
 
     // update variables
     lastTimeStamp = Timer.getFPGATimestamp();
