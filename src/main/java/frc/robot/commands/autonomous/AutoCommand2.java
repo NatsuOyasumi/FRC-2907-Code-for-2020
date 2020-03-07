@@ -34,6 +34,7 @@ public class AutoCommand2 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    AutoCommand_MoveOffLine.inUse = false;
     double curTime = Timer.getFPGATimestamp();
     double calTime = curTime - startTime;
 

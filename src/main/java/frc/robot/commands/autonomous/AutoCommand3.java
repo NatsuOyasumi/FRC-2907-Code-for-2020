@@ -46,6 +46,7 @@ public class AutoCommand3 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    AutoCommand_MoveOffLine.inUse = false;
     
     // get relative x position
     double currentPos = Robot.tx.getDouble(0.0);
